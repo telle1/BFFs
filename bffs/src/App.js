@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext, createContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Row, Col, Dropdown, Form } from 'react-bootstrap';
+import './images/homepagehero.png';
+import { Row, Col, Dropdown, Form, Container } from 'react-bootstrap';
 
-const QuestionContext = createContext(null)
+const QuestionContext = createContext(null);
 
 function App() {
-
   const premadeQuestions = [
     { question: 'What is my favorite drink?', answer: ['a', 'b', 'c', 'd'] },
     { question: 'Where was my best vacation?', answer: ['e', 'f', 'g', 'h'] },
@@ -25,45 +25,61 @@ function App() {
 
   const handleQuestionSubmit = (e) => {
     e.preventDefault();
-    console.log('HELLLLLLLLO');
-    console.log('ALL ANSWERS ARRAY', allQuizAns)
+    console.log('need to also send all the background colors?');
+    console.log('ALL ANSWERS ARRAY', allQuizAns);
   };
 
-  const [allQuizAns, setAllQuizAns] = useState([])
-  console.log('all qui ansawers', allQuizAns)
+  const [allQuizAns, setAllQuizAns] = useState([]);
+  console.log('all qui ansawers', allQuizAns);
 
   return (
-    <QuestionContext.Provider value={{setAllQuizAns, allQuizAns}}>
-    <div className='App pt-5'>
-      <Form onSubmit={handleQuestionSubmit}>
-        {[
-          '#FF9AA2',
-          '#FFB7B2',
-          '#FFB347',
-          '#FFDAC1',
-          '#B5EAD7',
-          '#E2F0CB',
-          '#85E3FF',
-          '#ACE7FF',
-          '#B28DFF',
-          '#97A2FF',
-        ].map((cardColor, i) => (
-          <Card
-            key={cardColor}
-            questionNumber={i + 1}
-            cardColor={cardColor}
-            defaultQ={premadeQuestions[i].question}
-            defaultA={premadeQuestions[i].answer}
-            premadeQuestions={premadeQuestions}
-          ></Card>
-        ))}
-        <button type='submit' className='btn btn-secondary'>
-          Create my quiz!
-        </button>
-      </Form>
-    </div>
-    </QuestionContext.Provider>
+    <QuestionContext.Provider value={{ setAllQuizAns, allQuizAns }}>
+      <div className='hero'>
+        <Container>
+          <div className='hero-header'>
+            <span>BFFs</span>
+            <br/>
+            <div className='hero-description mt-n4'> 
+            The ultimate friend- ship quiz to
+            test how well your friends know you!
+            <br/><br/>
+            <button className='btn  pink-button' type='submit'>Start my quiz!</button>
 
+            </div>
+              {/* <input type='text'></input> */}
+            </div>
+        </Container>
+      </div>
+
+      <div className='App pt-5'>
+        <Form onSubmit={handleQuestionSubmit}>
+          {[
+            '#FF9AA2',
+            '#FFB7B2',
+            '#FFB347',
+            '#FFDAC1',
+            '#B5EAD7',
+            '#E2F0CB',
+            '#85E3FF',
+            '#ACE7FF',
+            '#B28DFF',
+            '#97A2FF',
+          ].map((cardColor, i) => (
+            <Card
+              key={cardColor}
+              questionNumber={i + 1}
+              cardColor={cardColor}
+              defaultQ={premadeQuestions[i].question}
+              defaultA={premadeQuestions[i].answer}
+              premadeQuestions={premadeQuestions}
+            ></Card>
+          ))}
+          <button type='submit' className='btn btn-secondary'>
+            Create my quiz!
+          </button>
+        </Form>
+      </div>
+    </QuestionContext.Provider>
   );
 }
 
@@ -109,18 +125,18 @@ function Card({
 
             {/* Answer Components */}
             <div>
-                {/* Answer Options */}
-                {/* {console.log('LIST OF ANS OPTIONS', ansOptions)} */}
-                {ansOptions.map((ansOption, i) => (
-                      <AnsOption
-                        key={i}
-                        id={i}
-                        ansOption={ansOption}
-                        ansOptions={ansOptions}
-                        setAnsOptions={setAnsOptions}
-                        questionNumber={questionNumber}
-                      />
-                ))}
+              {/* Answer Options */}
+              {/* {console.log('LIST OF ANS OPTIONS', ansOptions)} */}
+              {ansOptions.map((ansOption, i) => (
+                <AnsOption
+                  key={i}
+                  id={i}
+                  ansOption={ansOption}
+                  ansOptions={ansOptions}
+                  setAnsOptions={setAnsOptions}
+                  questionNumber={questionNumber}
+                />
+              ))}
               {/* Add Answer Option */}
               {ansOptions.length < 6 ? (
                 <AddAnswer
@@ -151,7 +167,6 @@ function Card({
                 ></div>
               ))}
             </div>
-
           </div>
         </div>
       </Col>
@@ -224,12 +239,16 @@ function QuestionDropdown({
   );
 }
 
-function AnsOption({ id, ansOption, setAnsOptions, ansOptions, questionNumber }) {
-  
-  const {allQuizAns, setAllQuizAns} = useContext(QuestionContext)
-  
+function AnsOption({
+  id,
+  ansOption,
+  setAnsOptions,
+  ansOptions,
+  questionNumber,
+}) {
+  const { setAllQuizAns } = useContext(QuestionContext);
+
   const [ansText, setAnsText] = useState();
-  const [correctAnswer, setCorrectAnswer] = useState({});
   // console.log('CORRENT ANSWER', correctAnswer, ' FOR QUESTION NUMBER', questionNumber);
 
   useEffect(() => {
@@ -251,8 +270,10 @@ function AnsOption({ id, ansOption, setAnsOptions, ansOptions, questionNumber })
         value={ansText}
         className='mr-1'
         onClick={() => {
-          setCorrectAnswer({question: questionNumber, answerNum: id + 1})
-          setAllQuizAns(allQuizAns => [...allQuizAns, {question: questionNumber, answerNum: id + 1}])
+          setAllQuizAns((allQuizAns) => [
+            ...allQuizAns,
+            { question: questionNumber, answerNum: id + 1 },
+          ]);
         }}
         required
       />

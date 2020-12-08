@@ -1,6 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
+
 .App {
   text-align: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.hero {
+  height: 100vh;
+  background: url('./images/hero_edit_3.png') no-repeat center center/ cover;
+}
+
+.hero-header{
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  color: white;
+  font-weight: bold;
+  font-family: 'Nerko One', cursive;
+  height: 100vh;
+  font-size: 150px;
+}
+
+.hero-description{
+  font-size: 25px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: white;
+  width: 300px;
+}
+
+.pink-button{
+  font-size: 25px;
+  background-color: #FFB7D5;
+  color: white;
 }
 
 .card {
