@@ -1,0 +1,58 @@
+.App {
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.card {
+  min-height: 500px;
+  height: 100%;
+  width: 450px;
+  /* background-color: pink; */
+  color: white;
+  border-radius: 5px;
+  margin: auto;
+  padding: 10px;
+}
+
+.text-area{
+  width: 400px;
+}
+
+.secondary{
+  background-color: blanchedalmond !important;
+  color: blanchedalmond !important;
+}
+
+.question-dropdown{
+  margin-top: -6px;
+  width: 400px;
+}
+
+.question-dropdown-menu{
+  width: 400px;
+}
+
+.btn-transparent{
+  background-color: white;
+  width: 400px;
+}
+
+.btn-transparent:hover{
+  background-color: #DEDEDE;
+}
+
+.answer-option{
+  width: 350px;
+  border-radius: 6px;
+}
+
+.premade-question{
+  overflow: scroll;
+}
+
+.colors{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid white;
+}
