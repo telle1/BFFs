@@ -1,0 +1,20 @@
+.card {
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  min-height: 500px;
+  height: 100%;
+  width: 450px;
+  color: white;
+  border-radius: 5px;
+  margin: auto;
+  padding: 10px;
+}
+
+.pick-a-color{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 1px solid white;
+  }
+  

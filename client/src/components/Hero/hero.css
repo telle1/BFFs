@@ -1,0 +1,35 @@
+.hero {
+  height: 100vh;
+  background: url('../../images/hero_edit_6.png') no-repeat center center/ cover;
+  max-height: 100vh;
+  padding: 150px 80px 0px;
+  color: white;
+}
+
+.hero-header {
+  
+  font-weight: bold;
+  font-family: 'Nerko One', cursive;
+  font-size: 150px;
+}
+
+.hero-description {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  width: 300px;
+}
+
+.user-options{
+  padding-top: 30px;
+  width: 300px;
+}
+
+.pink-button{
+  font-size: 25px;
+  background-color: #FFB7D5;
+  color: white;
+}
+
+.or {
+
+}

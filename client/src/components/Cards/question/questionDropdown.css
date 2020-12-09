@@ -1,0 +1,12 @@
+.question-dropdown {
+  margin-top: -6px;
+  width: 400px;
+}
+
+.question-dropdown-menu {
+  width: 400px;
+}
+
+.premade-question{
+    overflow: scroll;
+  }
