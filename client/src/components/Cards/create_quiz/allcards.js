@@ -5,19 +5,19 @@ import Card from './card.js';
 import axios from 'axios';
 
 const premadeQuestions = [
-  { question: 'What is my favorite drink?', answer: ['a', 'b', 'c', 'd'] },
+  { question: 'Why do I want to become a programmer?', answer: ['Money', 'I love problem solving', 'Why not?', 'Uhh...'] },
   { question: 'Where was my best vacation?', answer: ['e', 'f', 'g', 'h'] },
   {
     question: 'What was the name of my favorite stuffed animal?',
     answer: ['i', 'j', 'k', 'l'],
   },
   { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'What is my favorite color', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'What sport do I like watching the best?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'What is my middle name?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'What is my favorite drink?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'What was my craziest night?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'What is my favorite subject?', answer: ['History', 'Computer Science', 'English', 'Biology'] },
 ];
 
 function AllCards() {

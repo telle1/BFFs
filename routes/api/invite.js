@@ -10,7 +10,9 @@ router.post('/', (req, res) => {
   res.json({ test: 'test' });
   //store the info in db
   //generate and send back a pin
-  let user = new User({ userName: userName });
+  let pin = "test"
+  let user = new User({ userName: userName, pin: pin });
+  let quizInfoArray = []
   for (let i = 0; i < quizInfo.length; i++) {
     const quizFields = {
       number: quizInfo[i].number,
@@ -19,7 +21,8 @@ router.post('/', (req, res) => {
       correctAnswer: quizInfo[i].correctAnswer,
       answerOptions: quizInfo[i].answerOptions,
     };
-    let quiz = new Quiz({ userName: 'test', quizInfo: quizFields });
+    quizInfoArray.push(quizFields)
+    let quiz = new Quiz({ userName: 'test', quizInfo: quizInfoArray});
     quiz.save();
     // console.log(quizFields);
   }
