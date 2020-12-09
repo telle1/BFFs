@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Hero from './components/Hero/hero.js'
 import Invite from './components/Invite/invite.js'
-import AllCards from './components/Cards/allcards.js'
+import AllCards from './components/Cards/create_quiz/allcards.js'
+import QuizTakerCards from './components/Cards/take_quiz/quizTakerCards.js'
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
     <Switch>
     <Route exact path="/" component={Hero}></Route>
     <Route path="/invite" component={Invite}></Route>
-      <Route path="/create-quiz" component={AllCards}></Route>
+    <Route path="/create-quiz" component={AllCards}></Route>
+    <Route path="/take-quiz/:quizId" component={QuizTakerCards}></Route>
     </Switch>
   </Router>
   )

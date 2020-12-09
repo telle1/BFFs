@@ -4,7 +4,6 @@
   "description": "Friendship test",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
@@ -13,6 +12,7 @@
   "author": "Tiffany Luu",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.21.0",
     "concurrently": "^5.3.0",
     "config": "^3.3.3",
     "express": "^4.17.1",

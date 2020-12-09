@@ -10,7 +10,4 @@ const QuizSchema = new mongoose.Schema({
     }
 })
 
-//user table
-//user
-//+their room link
-//+ their results link
+module.exports = Quiz = mongoose.model('quiz', QuizSchema)

@@ -2,22 +2,23 @@ import { Form } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from './card.js';
+import axios from 'axios';
 
 const premadeQuestions = [
-    { question: 'What is my favorite drink?', answer: ['a', 'b', 'c', 'd'] },
-    { question: 'Where was my best vacation?', answer: ['e', 'f', 'g', 'h'] },
-    {
-      question: 'What was the name of my favorite stuffed animal?',
-      answer: ['i', 'j', 'k', 'l'],
-    },
-    { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-    { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-    { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-    { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-    { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-    { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-    { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-  ];
+  { question: 'What is my favorite drink?', answer: ['a', 'b', 'c', 'd'] },
+  { question: 'Where was my best vacation?', answer: ['e', 'f', 'g', 'h'] },
+  {
+    question: 'What was the name of my favorite stuffed animal?',
+    answer: ['i', 'j', 'k', 'l'],
+  },
+  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
+  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
+];
 
 function AllCards() {
   let history = useHistory();
@@ -38,29 +39,42 @@ function AllCards() {
     //   }
   ]);
 
-  
+  console.log('HERES ALL THE QUIZ INFO', quizInfo);
 
-  console.log('HERES ALL THE QUIZ INFO', quizInfo)
-
-  const handleQuestionSubmit = (e) => {
+  const handleQuestionSubmit = async (e) => {
     e.preventDefault();
     console.log('need to also send all the background colors?');
     console.log('ALL ANSWERS ARRAY', allQuizAns);
-    console.log('QUIZ INFOOOOOO', quizInfo)
+    console.log('QUIZ INFOOOOOO', quizInfo);
     history.push('/invite');
 
-    fetch('/api/invite', {
-        method: 'POST',
+    try {
+      const config = {
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            quizInfo: "Test"
-        })
-    })
-    .then(res =>res.json())
-    .then(data => console.log('WHATS IN DATA', data))
+      };
+      const body = JSON.stringify({ quizInfo: quizInfo, userName: 'testuser' });
 
+      const res = await axios.post('/api/invite', body, config);
+      console.log(res.data);
+    } catch (err) {
+      console.error(err.response.data);
+    }
+
+    // fetch('/api/invite', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         quizInfo: "Test"
+    //     })
+    // })
+    // .then(res =>res.json())
+    // .then(data => console.log('WHATS IN DATA', data))
+    // .catch((error) => {
+    //     console.error('Error:', error)})
   };
 
   console.log('all quiz ansawers', allQuizAns);
@@ -79,7 +93,8 @@ function AllCards() {
         '#B28DFF',
         '#97A2FF',
       ].map((cardColor, i) => (
-        <Card key={cardColor}
+        <Card
+          key={cardColor}
           allQuizAns={allQuizAns}
           setAllQuizAns={setAllQuizAns}
           questionNumber={i + 1}
