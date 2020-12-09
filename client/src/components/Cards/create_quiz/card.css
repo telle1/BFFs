@@ -1,7 +1,13 @@
+.quiz-header{
+  font-size: 60px;
+  font-family: 'Nerko One', cursive;
+  color: gray;
+}
+
 .card {
   text-align: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   min-height: 500px;
   height: 100%;
   width: 450px;

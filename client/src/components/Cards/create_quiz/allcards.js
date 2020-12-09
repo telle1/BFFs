@@ -1,6 +1,6 @@
 import { Form } from 'react-bootstrap';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import Card from './card.js';
 import axios from 'axios';
 
@@ -22,7 +22,9 @@ const premadeQuestions = [
 
 function AllCards() {
   let history = useHistory();
+  const location = useLocation();
   const [allQuizAns, setAllQuizAns] = useState([]);
+  const [name, setName] = useState("")
   const [quizInfo, setQuizInfo] = useState([
     // {
     //   number: 1,
@@ -38,6 +40,11 @@ function AllCards() {
     //     answerOptions: '',
     //   }
   ]);
+
+  useEffect(() => {
+    console.log(location.state.name)
+    setName(location.state.name)
+  }, [location])
 
   console.log('HERES ALL THE QUIZ INFO', quizInfo);
 
@@ -80,7 +87,8 @@ function AllCards() {
   console.log('all quiz ansawers', allQuizAns);
 
   return (
-    <Form onSubmit={handleQuestionSubmit}>
+    <Form onSubmit={handleQuestionSubmit} className="mt-5 mb-5">
+      <h1 className="d-flex justify-content-center mb-3 quiz-header">Ask away, {name}! </h1>
       {[
         '#FF9AA2',
         '#FFB7B2',
