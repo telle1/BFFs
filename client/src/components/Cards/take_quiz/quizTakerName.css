@@ -1,0 +1,32 @@
+.enter-container{
+    background: url('../../../images/enter_name_4.png') no-repeat center center /cover;
+    height: 100vh;
+}
+
+.btn-blue{
+    font-size: 25px;
+    background-color: #6EB5FF;
+    color: white;
+  }
+
+.enter-friend-name{
+    height: 50px;
+    display: flex;
+
+}
+
+.enter-name-input{
+    font-size: 30px;
+}
+
+.true-friend-header{
+    font-family: 'Nerko One', cursive;
+    font-size: 80px;
+    width: 400px;
+    color: gray;
+
+}
+
+.enter-container{
+    padding: 240px 140px;
+}

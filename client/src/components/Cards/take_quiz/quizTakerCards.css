@@ -1,0 +1,39 @@
+/* .card {
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    min-height: 500px;
+    height: 100%;
+    width: 450px;
+    color: white;
+    border-radius: 5px;
+    margin: auto;
+    padding: 10px;
+} */
+
+.btn-answer-choice{
+    width: 400px;
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 20px;
+    background-color: white;
+    color: black;
+}
+
+.div-answer-choice:hover{
+    transform: translateY(-40px);
+    transform: scale(1.1);
+}
+
+.btn-column{
+    word-wrap: break-word;
+    display: inline-block;
+    text-align: left;
+}
+
+.letter-choice{
+    border-radius: 50%;
+    margin-left: -1px;
+    height: 100%;
+    background-color: pink;
+}
