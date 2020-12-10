@@ -17,6 +17,7 @@ questions or make your own custom question/answer choices. You can also change t
 ## Techstack
 **Frontend:** React, Javascript, HTML/CSS, Bootstrap <br/>
 **Backend**: MongoDB, Express, Node.js  <br/> 
+**UI/Design**: Affinity Designer
 
 ## Preview
 ## Homepage
