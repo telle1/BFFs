@@ -1,8 +1,12 @@
 const mongoose = require('mongoose')
 const QuizSchema = new mongoose.Schema({
     userName: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        type: String,
+        required: true
+    }, 
+    roomCode: {
+        type: String,
+        ref: 'User'
     },
     quizInfo: [
         {
@@ -23,7 +27,7 @@ const QuizSchema = new mongoose.Schema({
             required: true
         },
         answerOptions: {
-            type: [Number],
+            type: [String],
             required: true
         }
     }]

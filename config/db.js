@@ -10,6 +10,10 @@ const connectDb = async () => {
             useCreateIndex: true
         })
     console.log('Database connected!');
+    // mongoose.connection.db.dropCollection('quizzes', function(err, result) {console.log('hi')});
+    // mongoose.connection.db.dropCollection('users', function(err, result) {console.log('hi')});
+
+    // db.collection.deleteMany({})
     } catch(err){
         console.log('Error message', err.message)
         process.exit(1)

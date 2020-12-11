@@ -7,6 +7,7 @@ import Invite from './components/Invite/invite.js'
 import AllCards from './components/Cards/create_quiz/allcards.js'
 import QuizTakerName from './components/Cards/take_quiz/quizTakerName.js'
 import QuizTakerCards from './components/Cards/take_quiz/quizTakerCards.js'
+import Results from './components/Results/results.js'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <Route path="/invite" component={Invite}></Route>
     <Route path="/create-quiz" component={AllCards}></Route>
     <Route path="/take-quiz/:quizId" component={QuizTakerName}></Route>
+    <Route path="/results/:quizId" component={Results}></Route>
     </Switch>
   </Router>
   )

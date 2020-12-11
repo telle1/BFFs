@@ -12,8 +12,6 @@ function Card({
   premadeQuestions,
   defaultQ,
   defaultA,
-  allQuizAns,
-  setAllQuizAns,
   quizInfo,
   setQuizInfo,
 }) {
@@ -33,20 +31,23 @@ function Card({
         correctAnswer: correctAnswer,
         answerOptions: ansOptions,
       },
+   
     ]);
-  }, [bgColor, question, correctAnswer, ansOptions]);
+    // setQuizInfo(quizInfo)
+  }, [bgColor, correctAnswer, ansOptions, question]);
+  
 
   const changeCardColor = (color) => {
     setBgColor(color);
 
-    let updateBgColor = quizInfo.map((questionInfo, i) => {
-      if (i + 1 == questionNumber) {
-        return { ...questionInfo, bgColor: bgColor };
-      } else {
-        return questionInfo;
-      }
-    });
-    setQuizInfo(updateBgColor);
+    // let updateBgColor = quizInfo.map((questionInfo, i) => {
+    //   if (i + 1 == questionNumber) {
+    //     return { ...questionInfo, bgColor: color};
+    //   } else {
+    //     return questionInfo;
+    //   }
+    // });
+    // setQuizInfo(updateBgColor);
   };
 
   return (
@@ -87,9 +88,12 @@ function Card({
                   correctAnswer={correctAnswer}
                   setCorrectAnswer={setCorrectAnswer}
                   questionNumber={questionNumber}
-                  allQuizAns={allQuizAns}
-                  setAllQuizAns={setAllQuizAns}
+                  quizInfo={quizInfo}
+                  setQuizInfo={setQuizInfo}
+                  correctAnswer={correctAnswer}
+                  questionNumber={questionNumber}
                 />
+
               ))}
               {/* Add Answer Option */}
               {ansOptions.length < 6 ? (

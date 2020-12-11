@@ -1,25 +1,26 @@
-import QuizTakerCards from './quizTakerCards'
-import './quizTakerName.css'
-import React, { useState} from 'react'
-
-function QuizTakerName(){
+import QuizTakerCards from './quizTakerCards';
+import './quizTakerName.css';
+import React, { useState, useEffect} from 'react';
+import axios from 'axios';
+//rendered at /take-quiz/:quizId route
+function QuizTakerName({match}){
     const [nameEntered, setNameEntered] = useState(false)
-    const [name, setName] = useState()
+    const [name, setName] = useState("")
 
     const handleName = (e) => {
         e.preventDefault();
         setNameEntered(true)
-        setName(e.target.value)
     }
 
     return (
         <React.Fragment>
-        {nameEntered ? <QuizTakerCards name={name}/> :
+        {nameEntered ? <QuizTakerCards name={name} match={match}/> :
         
         <div className="enter-container">
             <h1 className="true-friend-header">Are you a true friend?</h1>
             <div className="enter-friend-name">
-            <input type= "text" placeholder="Enter name" className="enter-name-input"></input>
+            <input type= "text" placeholder="Enter name" className="enter-name-input"
+            valye={name} onChange={(e) => setName(e.target.value)}></input>
             <button type="submit" className="btn btn-blue" onClick={handleName}>Submit</button>
             </div>
         </div>

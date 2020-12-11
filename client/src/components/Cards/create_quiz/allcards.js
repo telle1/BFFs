@@ -21,20 +21,22 @@ const premadeQuestions = [
 ];
 
 function AllCards() {
-  let history = useHistory();
+  const history = useHistory();
   const location = useLocation();
-  const [allQuizAns, setAllQuizAns] = useState([]);
+
   const [name, setName] = useState("")
   const [quizInfo, setQuizInfo] = useState([
     // {
     //   number: 1,
     //   question: '',
+    //   correctAnswer: "",
     //   answer: '',
     //   bgColor: '',
     //   answerOptions: '',
     // },     {
     //     number: 2,
     //     question: '',
+    //     correctAnswer: "",
     //     answer: '',
     //     bgColor: '',
     //     answerOptions: '',
@@ -46,14 +48,17 @@ function AllCards() {
     setName(location.state.name)
   }, [location])
 
+  console.log('WHATS IN NAME', name)
+
   console.log('HERES ALL THE QUIZ INFO', quizInfo);
 
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
     console.log('need to also send all the background colors?');
-    console.log('ALL ANSWERS ARRAY', allQuizAns);
     console.log('QUIZ INFOOOOOO', quizInfo);
-    history.push('/invite');
+    // history.push('/invite');
+    // history.push({pathname: '/invite', state: {link: 'test1234253'}});
+
 
     try {
       const config = {
@@ -61,30 +66,16 @@ function AllCards() {
           'Content-Type': 'application/json',
         },
       };
-      const body = JSON.stringify({ quizInfo: quizInfo, userName: 'testuser' });
-
+      const body = JSON.stringify({ quizInfo: quizInfo, userName: name });
       const res = await axios.post('/api/invite', body, config);
-      console.log(res.data);
+      console.log('wHAT IS THE DATA', res.data);
+      history.push({pathname: '/invite', state: {roomCode: res.data.roomCode}});
+      //          onClick={() => history.push({pathname: '/create-quiz', state: {name: name}})}
     } catch (err) {
       console.error(err.response.data);
     }
-
-    // fetch('/api/invite', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //         quizInfo: "Test"
-    //     })
-    // })
-    // .then(res =>res.json())
-    // .then(data => console.log('WHATS IN DATA', data))
-    // .catch((error) => {
-    //     console.error('Error:', error)})
   };
 
-  console.log('all quiz ansawers', allQuizAns);
 
   return (
     <Form onSubmit={handleQuestionSubmit} className="mt-5 mb-5">
@@ -103,8 +94,6 @@ function AllCards() {
       ].map((cardColor, i) => (
         <Card
           key={cardColor}
-          allQuizAns={allQuizAns}
-          setAllQuizAns={setAllQuizAns}
           questionNumber={i + 1}
           cardColor={cardColor}
           defaultQ={premadeQuestions[i].question}
@@ -124,3 +113,6 @@ function AllCards() {
 }
 
 export default AllCards;
+
+
+
