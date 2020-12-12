@@ -29,22 +29,24 @@ function Results() {
         <h2 className="lb-header"> Name's <span className="font-weight-bold">BFFs</span></h2>
         <Table striped className='leaderboard-table'>
           <tbody>
+          
             {allResults.map((result, i) => (
-              <ResultCard result={result} number={i+1}/>
+              <ResultRow key={i} result={result} />
             ))}
+
+
           </tbody>
         </Table>
       </Col>
     </Row>
   );
 }
-//need to account for ties
 
-function ResultCard({ result, number }) {
+function ResultRow({ result }) {
   return (
     <React.Fragment>
       <tr className='table-row'>
-        <td>{number}</td>
+        <td>{result.rank}</td>
         <td>{result.friendName} </td>
         <td>
           <div className="lb-score">
