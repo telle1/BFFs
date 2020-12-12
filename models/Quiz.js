@@ -8,6 +8,10 @@ const QuizSchema = new mongoose.Schema({
         type: String,
         ref: 'User'
     },
+    pin: {
+        type: String,
+        required: true
+    },
     quizInfo: [
         {
         number: {

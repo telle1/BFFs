@@ -3,37 +3,13 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './results.css';
 
-////history.push({pathname: '/results/${match.params.quizId}', state:{score: score, name: name}})
-
 function Results() {
   const [allResults, setAllResults] = useState([]);
   const location = useLocation();
-
-  console.log('WHAT IS IN ALL RESULTS', allResults);
-
+  
   useEffect(()=> {
     setAllResults(location.state.allResults)
   }, [])
-
-  // useEffect(() => {
-  //   const config = {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   };
-  //   const body = JSON.stringify({
-  //     name: location.state.name,
-  //     score: location.state.score,
-  //   });
-
-  //   axios
-  //     .post(`/api/results/${location.state.match.params.quizId}`, body, config) // change to paramsId
-  //     .then((res) => {
-  //       setAllResults(res.data.allResults);
-  //     });
-  // }, []);
-
-  //Cannot read property 'params' of undefined
 
   return (
     <div className='results'>

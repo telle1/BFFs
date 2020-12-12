@@ -11,6 +11,13 @@
     padding: 10px;
 } */
 
+.how-well-header{
+    font-family: 'Nerko One', cursive;
+    color: gray;
+    text-align: center;
+    font-size: 70px;
+}
+
 .btn-answer-choice{
     width: 400px;
     padding: 15px;

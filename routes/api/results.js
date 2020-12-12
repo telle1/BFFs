@@ -10,7 +10,8 @@ router.post('/:quizId', async (req,res) => {
         let newResult = await results.save()
 
         let allResults = await Results.find({quizId: req.params.quizId}) //an array of objects
-
+        allResults.sort((a,b) => (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0)); //sort by score
+    
         res.json({"allResults": allResults})
 
     } catch(err){

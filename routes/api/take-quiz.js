@@ -9,7 +9,7 @@ router.get('/:quizId', async (req,res) => {
   await Quiz.findOne({roomCode: req.params.quizId}, 'userName quizInfo', (err, quiz) => {
       if (err) return handleError(err)
       console.log('WHAT IN THE USERS QUIZ INFO', quiz.quizInfo)
-      res.json({'quizInfo': quiz.quizInfo})
+      res.json({'quizInfo': quiz.quizInfo, 'owner': quiz.userName})
   })
 
   

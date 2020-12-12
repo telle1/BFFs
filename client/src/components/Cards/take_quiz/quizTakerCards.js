@@ -5,69 +5,62 @@ import './quizTakerCards.css';
 import axios from 'axios';
 
 function QuizTakerCards({ name, match }) {
-  // console.log('FRIENDS NAME', name);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [showScore, setShowScore] = useState(false);
   const [quizCards, setQuizCards] = useState([]);
+  const [quizOwner, setQuizOwner] = useState("")
 
   useEffect(() => {
     const fetchUserCards = () => {
       axios.get(`/api/take-quiz/${match.params.quizId}`).then((res) => {
         setQuizCards(res.data.quizInfo);
+        setQuizOwner(res.data.owner)
       });
     };
 
     fetchUserCards();
   }, []);
 
-  console.log('WHATS IN SCORE', score);
-
   return (
     <React.Fragment>
+      <h1 className="how-well-header mt-3">How well do you know {quizOwner}, {name}?</h1>
       {quizCards.length > 0 ? (
-        <Row key={quizCards.questionNumber} className='mb-5 mt-5'>
+        <Row key={quizCards.questionNumber} className='mb-5 mt-4'>
           <Col>
             <div
               className='card'
               style={{ backgroundColor: quizCards[currentQuestion].bgColor }}
             >
-              {showScore ? (
-                <h1 className='d-flex justify-content-center align-items-center'>
-                  {score}/10{' '}
-                </h1>
-              ) : (
-                <div className='card-content'>
-                  <h2 className='font-weight-bold'>
-                    QUESTION {quizCards[currentQuestion].number}
-                  </h2>
-                  {/* Question */}
-                  <h4 className='question mb-2'>
-                    {quizCards[currentQuestion].question}
-                  </h4>
+              <div className='card-content'>
+                <h2 className='font-weight-bold'>
+                  QUESTION {quizCards[currentQuestion].number}
+                </h2>
+                {/* Question */}
+                <h4 className='question mb-2'>
+                  {quizCards[currentQuestion].question}
+                </h4>
 
-                  <div>
-                    {/* Answer Options */}
-                    {quizCards[currentQuestion].answerOptions.map(
-                      (ansOption, i) => (
-                        <AnsOption
-                          key={i}
-                          match={match}
-                          name={name}
-                          id={i}
-                          ansOption={ansOption}
-                          currentQuestion={currentQuestion}
-                          setCurrentQuestion={setCurrentQuestion}
-                          score={score}
-                          quizCards={quizCards}
-                          setShowScore={setShowScore}
-                          setScore={setScore}
-                        />
-                      )
-                    )}
-                  </div>
+                <div>
+                  {/* Answer Options */}
+                  {quizCards[currentQuestion].answerOptions.map(
+                    (ansOption, i) => (
+                      <AnsOption
+                        key={i}
+                        match={match}
+                        name={name}
+                        id={i}
+                        ansOption={ansOption}
+                        currentQuestion={currentQuestion}
+                        setCurrentQuestion={setCurrentQuestion}
+                        score={score}
+                        quizCards={quizCards}
+                        setScore={setScore}
+                      />
+                    )
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </Col>
         </Row>
@@ -82,7 +75,6 @@ function AnsOption({
   currentQuestion,
   setCurrentQuestion,
   quizCards,
-  setShowScore,
   setScore,
   score,
   match,
@@ -123,31 +115,25 @@ function AnsOption({
       if (nextQuestion < quizCards.length) {
         setCurrentQuestion(currentQuestion + 1);
       } else {
-        setShowScore(true);
 
-        // const config = {
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        // };
-        // const body = JSON.stringify({
-        //   name: name,
-        //   score: score,
-        // });
-
-        // axios
-        //   .post(`/api/results/${match.params.quizId}`, body, config) // change to paramsId
-        //   .then((res) => {
-        //     history.push({
-        //       pathname: `/results/${match.params.quizId}`,
-        //       state: { allResults: res.data.allResults },
-        //     });
-        //   });
-
-        history.push({
-          pathname: `/results/${match.params.quizId}`,
-          state: { score: score, name: name, match: match },
+        const config = {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        };
+        const body = JSON.stringify({
+          name: name,
+          score: score,
         });
+
+        axios
+          .post(`/api/results/${match.params.quizId}`, body, config) // change to paramsId
+          .then((res) => {
+            history.push({
+              pathname: `/results/${match.params.quizId}`,
+              state: { allResults: res.data.allResults },
+            });
+          });
       }
     }, 1000);
   };

@@ -25,9 +25,9 @@ router.post('/', async (req, res) => {
   console.log('PIN AND ROOM CODE', pin, roomCode)
   
   // add a user to the user model
-  let user = new User({firstName: userName, pin: pin, roomCode: roomCode})
-  let saveUser = await user.save();
-  console.log('wHATS IN USER', saveUser)
+  // let user = new User({firstName: userName, pin: pin, roomCode: roomCode})
+  // let saveUser = await user.save();
+  // console.log('wHATS IN USER', saveUser)
 
   let quizInfoArray = []
   for (let i = 0; i < quizInfo.length; i++) {
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
     quizInfoArray.push(quizFields)
   }
     
-  let quiz = new Quiz({ userName: userName, quizInfo: quizInfoArray, roomCode: roomCode });
+  let quiz = new Quiz({ userName: userName, quizInfo: quizInfoArray, roomCode: roomCode, pin: pin });
   let saveQuiz = await quiz.save();
   console.log('WHATS IN THE QUIZ', saveQuiz)
 

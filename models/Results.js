@@ -4,7 +4,7 @@ const ResultsSchema = new mongoose.Schema({
     quizId: {
         type: String,
         required: true
-    },
+    }, //roomCode?
     friendName: {
         type: String,
         required: true
