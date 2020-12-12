@@ -4,23 +4,10 @@ import { Row, Col } from 'react-bootstrap';
 import './quizTakerCards.css';
 import axios from 'axios';
 
-function QuizTakerCards({ name, match }) {
+function QuizTakerCards({ name, match, quizCards, quizOwner }) {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [quizCards, setQuizCards] = useState([]);
-  const [quizOwner, setQuizOwner] = useState("")
-
-  useEffect(() => {
-    const fetchUserCards = () => {
-      axios.get(`/api/take-quiz/${match.params.quizId}`).then((res) => {
-        setQuizCards(res.data.quizInfo);
-        setQuizOwner(res.data.owner)
-      });
-    };
-
-    fetchUserCards();
-  }, []);
 
   return (
     <React.Fragment>
@@ -99,7 +86,6 @@ function AnsOption({
     setLetterBgCol(numToLetter[String(id)].bgColor);
   }, []);
 
-  console.log('LETTER CHOICE', letterChoice);
 
   const changeQuestion = () => {
     const nextQuestion = currentQuestion + 1;
@@ -111,6 +97,9 @@ function AnsOption({
     }
 
     setTimeout(() => {
+
+      console.log('WHATS IN SCORE', score) //score is one behind
+
       setBtnColor('white');
       if (nextQuestion < quizCards.length) {
         setCurrentQuestion(currentQuestion + 1);
@@ -131,7 +120,7 @@ function AnsOption({
           .then((res) => {
             history.push({
               pathname: `/results/${match.params.quizId}`,
-              state: { allResults: res.data.allResults },
+              state: { allResults: res.data.allResults, friendScore: score },
             });
           });
       }
@@ -164,3 +153,18 @@ function AnsOption({
 }
 
 export default QuizTakerCards;
+
+
+  // const [quizCards, setQuizCards] = useState([]);
+  // const [quizOwner, setQuizOwner] = useState("")
+
+  // useEffect(() => {
+  //   const fetchUserCards = () => {
+  //     axios.get(`/api/take-quiz/${match.params.quizId}`).then((res) => {
+  //       setQuizCards(res.data.quizInfo);
+  //       setQuizOwner(res.data.owner)
+  //     });
+  //   };
+
+  //   fetchUserCards();
+  // }, []);

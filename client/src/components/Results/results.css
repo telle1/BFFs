@@ -1,11 +1,74 @@
-
-
-.result-card{
-    background-color: pink;
+.results {
+    margin: auto;
+    width: 800px;
+    height: 500px;
     max-height: 500px;
+    margin-top: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    box-shadow: 4px 4px 10px 3px #DEDEDE;
     overflow: scroll;
 }
 
-.result-card-title{
-    font-family: 'Nerko One', cursive;
+.friends-header{
+    font-size: 40px;
+}
+
+.friends-score {
+    background-color: #f8ceec;
+    background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+    color: white;
+    text-align: center;
+    padding: 40px 0px; 
+    font-family: "Nerko One", cursive;  
+}
+
+.circle-score{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    margin: auto;
+    line-height: 100px;
+}
+
+.big-score{
+    font-size: 80px;
+    color: #A98AEB;
+    margin: auto;
+    font-family: "Nerko One", cursive;
+}
+
+.small-score{
+    font-size: 30px;
+}
+
+.lb-header{
+    text-align: center;
+    font-family: "Nerko One", cursive;
+    font-size: 40px;
+    color: #A98AEB;
+}
+
+.lb-score{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    background-color: #E7C0EC;
+    color: white;
+    line-height: 30px;
+    margin: auto;
+}
+
+.leaderboard {
+    border-left: none;
+    text-align: center;
+    padding-top: 40px;    
+}
+
+.leaderboard-table{
+    width: 100%;
+}
+
+.table-row{
+    height: 40px;
 }

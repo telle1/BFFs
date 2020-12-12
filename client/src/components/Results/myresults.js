@@ -35,7 +35,7 @@ function MyResults() {
           <div>hi </div>
         ) : (
           <div>
-            <h1 className='who-is-my-bff'>Who is my BFF?</h1>
+            {/* <h1 className='who-is-my-bff'>Who is my BFF?</h1> */}
             <form onSubmit={handleResults}>
               <div className='results-input d-flex flex-column'>
                 <input
