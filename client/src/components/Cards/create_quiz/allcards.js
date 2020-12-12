@@ -5,12 +5,9 @@ import Card from './card.js';
 import axios from 'axios';
 
 const premadeQuestions = [
-  { question: 'Why do I want to become a programmer?', answer: ['Money', 'I love problem solving', 'Why not?', 'Uhh...'] },
+  { question: 'Why do I...?', answer: ['a', 'b', 'c', 'd'] },
   { question: 'Where was my best vacation?', answer: ['e', 'f', 'g', 'h'] },
-  {
-    question: 'What was the name of my favorite stuffed animal?',
-    answer: ['i', 'j', 'k', 'l'],
-  },
+  { question: 'What was the name of my favorite stuffed animal?', answer: ['i', 'j', 'k', 'l'] },
   { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
   { question: 'What is my favorite color', answer: ['m', 'n', 'o', 'p'] },
   { question: 'What sport do I like watching the best?', answer: ['m', 'n', 'o', 'p'] },
@@ -20,28 +17,25 @@ const premadeQuestions = [
   { question: 'What is my favorite subject?', answer: ['History', 'Computer Science', 'English', 'Biology'] },
 ];
 
+// let questions = {
+//   1: {question: 'Why do I...?', answer: ['a', 'b', 'c', 'd'] },
+//   2: {question: 'Where was my best vacation?', answer: ['e', 'f', 'g', 'h'] },
+//   3: {question: 'What was the name of my favorite stuffed animal?', answer: ['i', 'j', 'k', 'l'] },
+//   4: { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
+//   5: { question: 'What is my favorite color', answer: ['m', 'n', 'o', 'p'] },
+//   6: { question: 'What sport do I like watching the best?', answer: ['m', 'n', 'o', 'p'] },
+//   7: { question: 'What is my middle name?', answer: ['m', 'n', 'o', 'p'] },
+//   8: { question: 'What is my favorite drink?', answer: ['m', 'n', 'o', 'p'] },
+//   9: { question: 'What was my craziest night?', answer: ['m', 'n', 'o', 'p'] },
+//   10: { question: 'What is my favorite subject?', answer: ['History', 'Computer Science', 'English', 'Biology'] }
+// }
+
 function AllCards() {
   const history = useHistory();
   const location = useLocation();
 
   const [name, setName] = useState("")
-  const [quizInfo, setQuizInfo] = useState([
-    // {
-    //   number: 1,
-    //   question: '',
-    //   correctAnswer: "",
-    //   answer: '',
-    //   bgColor: '',
-    //   answerOptions: '',
-    // },     {
-    //     number: 2,
-    //     question: '',
-    //     correctAnswer: "",
-    //     answer: '',
-    //     bgColor: '',
-    //     answerOptions: '',
-    //   }
-  ]);
+  const [quizInfo, setQuizInfo] = useState([]);
 
   useEffect(() => {
     console.log(location.state.name)
@@ -54,12 +48,7 @@ function AllCards() {
 
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
-    console.log('need to also send all the background colors?');
     console.log('QUIZ INFOOOOOO', quizInfo);
-    // history.push('/invite');
-    // history.push({pathname: '/invite', state: {link: 'test1234253'}});
-
-
     try {
       const config = {
         headers: {
@@ -70,12 +59,10 @@ function AllCards() {
       const res = await axios.post('/api/invite', body, config);
       console.log('wHAT IS THE DATA', res.data);
       history.push({pathname: '/invite', state: {roomCode: res.data.roomCode}});
-      //          onClick={() => history.push({pathname: '/create-quiz', state: {name: name}})}
     } catch (err) {
-      console.error(err.response.data);
+      console.error(err.message);
     }
   };
-
 
   return (
     <Form onSubmit={handleQuestionSubmit} className="mt-5 mb-5">
@@ -114,5 +101,21 @@ function AllCards() {
 
 export default AllCards;
 
+
+//    // {
+    //   number: 1,
+    //   question: '',
+    //   correctAnswer: "",
+    //   answer: '',
+    //   bgColor: '',
+    //   answerOptions: '',
+    // },     {
+    //     number: 2,
+    //     question: '',
+    //     correctAnswer: "",
+    //     answer: '',
+    //     bgColor: '',
+    //     answerOptions: '',
+    //   }
 
 

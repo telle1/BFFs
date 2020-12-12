@@ -15,7 +15,7 @@ function Invite(){
     <h1 className="invite-header mb-4">
       Invite your friends! 
     </h1>
-    <h2><Link to={`/take-quiz/${roomCode}`}>http://localhost:3000/take-quiz/{roomCode}</Link></h2>
+    <h2 className="link"><Link to={`/take-quiz/${roomCode}`}>http://localhost:3000/take-quiz/{roomCode}</Link></h2>
     <h2 className="results"> To access your results, enter code: </h2>
     <h2 className="result-code">F4SM621</h2>
   </div>

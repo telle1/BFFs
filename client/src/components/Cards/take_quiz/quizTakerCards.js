@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import './quizTakerCards.css';
 import axios from 'axios';
 
 function QuizTakerCards({ name, match }) {
-  console.log('FRIENDS NAME', name);
+  // console.log('FRIENDS NAME', name);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [quizCards, setQuizCards] = useState([]);
 
-  const fetchUserCards = () => {
-    axios.get(`/api/take-quiz/${match.params.quizId}`).then((res) => {
-      setQuizCards(res.data.quizInfo);
-      console.log('WHATS IN THE QUIZ INFo', res.data.quizInfo);
-    });
-  };
-
   useEffect(() => {
+    const fetchUserCards = () => {
+      axios.get(`/api/take-quiz/${match.params.quizId}`).then((res) => {
+        setQuizCards(res.data.quizInfo);
+      });
+    };
+
     fetchUserCards();
   }, []);
 
@@ -52,6 +52,8 @@ function QuizTakerCards({ name, match }) {
                       (ansOption, i) => (
                         <AnsOption
                           key={i}
+                          match={match}
+                          name={name}
                           id={i}
                           ansOption={ansOption}
                           currentQuestion={currentQuestion}
@@ -83,11 +85,13 @@ function AnsOption({
   setShowScore,
   setScore,
   score,
+  match,
+  name,
 }) {
-
   const [btnColor, setBtnColor] = useState('white');
   const [letterChoice, setLetterChoice] = useState('');
   const [letterBgCol, setLetterBgCol] = useState('');
+  const history = useHistory();
 
   let numToLetter = {
     0: { letter: 'A', bgColor: '#FFB7B2' },
@@ -112,10 +116,6 @@ function AnsOption({
       setBtnColor('#90ee90');
     } else {
       setBtnColor('#ff3232');
-      setTimeout(() => {
-        // history.push('/');
-        <p>Work in progess....</p>;
-      }, 1000);
     }
 
     setTimeout(() => {
@@ -124,7 +124,10 @@ function AnsOption({
         setCurrentQuestion(currentQuestion + 1);
       } else {
         setShowScore(true);
-        //history.push({pathname: '/results/${match.params.quizId}', state:{score: score}})
+        history.push({
+          pathname: `/results/${match.params.quizId}`,
+          state: { score: score, name: name, match: match },
+        });
       }
     }, 1000);
   };

@@ -10,6 +10,7 @@ app.use(express.json({extended: false}));
 
 app.use('/api/invite', require('./routes/api/invite'))
 app.use('/api/take-quiz', require('./routes/api/take-quiz'))
+app.use('/api/results', require('./routes/api/results'))
 // it will get the data from the frontend
 //create a new quiz
 //quizFields = {}

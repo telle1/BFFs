@@ -31,23 +31,12 @@ function Card({
         correctAnswer: correctAnswer,
         answerOptions: ansOptions,
       },
-   
     ]);
-    // setQuizInfo(quizInfo)
   }, [bgColor, correctAnswer, ansOptions, question]);
   
 
   const changeCardColor = (color) => {
     setBgColor(color);
-
-    // let updateBgColor = quizInfo.map((questionInfo, i) => {
-    //   if (i + 1 == questionNumber) {
-    //     return { ...questionInfo, bgColor: color};
-    //   } else {
-    //     return questionInfo;
-    //   }
-    // });
-    // setQuizInfo(updateBgColor);
   };
 
   return (
@@ -133,3 +122,12 @@ function Card({
 }
 
 export default Card;
+
+//    // let updateBgColor = quizInfo.map((questionInfo, i) => {
+    //   if (i + 1 == questionNumber) {
+    //     return { ...questionInfo, bgColor: color};
+    //   } else {
+    //     return questionInfo;
+    //   }
+    // });
+    // setQuizInfo(updateBgColor);

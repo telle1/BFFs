@@ -6,7 +6,6 @@ import Hero from './components/Hero/hero.js'
 import Invite from './components/Invite/invite.js'
 import AllCards from './components/Cards/create_quiz/allcards.js'
 import QuizTakerName from './components/Cards/take_quiz/quizTakerName.js'
-import QuizTakerCards from './components/Cards/take_quiz/quizTakerCards.js'
 import Results from './components/Results/results.js'
 
 

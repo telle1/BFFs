@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
     quizInfoArray.push(quizFields)
   }
     
-  let quiz = new Quiz({ userName: userName, quizInfo: quizInfoArray, roomCode: roomCode);
+  let quiz = new Quiz({ userName: userName, quizInfo: quizInfoArray, roomCode: roomCode });
   let saveQuiz = await quiz.save();
   console.log('WHATS IN THE QUIZ', saveQuiz)
 

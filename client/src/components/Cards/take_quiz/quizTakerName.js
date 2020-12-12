@@ -1,7 +1,7 @@
 import QuizTakerCards from './quizTakerCards';
 import './quizTakerName.css';
-import React, { useState, useEffect} from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+
 //rendered at /take-quiz/:quizId route
 function QuizTakerName({match}){
     const [nameEntered, setNameEntered] = useState(false)
