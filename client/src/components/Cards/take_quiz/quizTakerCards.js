@@ -5,13 +5,39 @@ import './quizTakerCards.css';
 import axios from 'axios';
 
 function QuizTakerCards({ name, match, quizCards, quizOwner }) {
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
+  const [showResults, setShowResults] = useState(false);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (showResults) {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const body = JSON.stringify({
+        name: name,
+        score: score,
+      });
+
+      axios
+        .post(`/api/results/${match.params.quizId}`, body, config) // change to paramsId
+        .then((res) => {
+          history.push({
+            pathname: `/results/${match.params.quizId}`,
+            state: { allResults: res.data.allResults, friendScore: score },
+          });
+        });
+    }
+  }, [showResults]); //so that score is not one state behind
 
   return (
     <React.Fragment>
-      <h1 className="how-well-header mt-3">How well do you know {quizOwner}, {name}?</h1>
+      <h1 className='how-well-header mt-3'>
+        How well do you know {quizOwner}, {name}?
+      </h1>
       {quizCards.length > 0 ? (
         <Row key={quizCards.questionNumber} className='mb-5 mt-4'>
           <Col>
@@ -34,15 +60,13 @@ function QuizTakerCards({ name, match, quizCards, quizOwner }) {
                     (ansOption, i) => (
                       <AnsOption
                         key={i}
-                        match={match}
-                        name={name}
                         id={i}
                         ansOption={ansOption}
                         currentQuestion={currentQuestion}
                         setCurrentQuestion={setCurrentQuestion}
-                        score={score}
                         quizCards={quizCards}
                         setScore={setScore}
+                        setShowResults={setShowResults}
                       />
                     )
                   )}
@@ -63,14 +87,11 @@ function AnsOption({
   setCurrentQuestion,
   quizCards,
   setScore,
-  score,
-  match,
-  name,
+  setShowResults,
 }) {
   const [btnColor, setBtnColor] = useState('white');
   const [letterChoice, setLetterChoice] = useState('');
   const [letterBgCol, setLetterBgCol] = useState('');
-  const history = useHistory();
 
   let numToLetter = {
     0: { letter: 'A', bgColor: '#FFB7B2' },
@@ -86,43 +107,21 @@ function AnsOption({
     setLetterBgCol(numToLetter[String(id)].bgColor);
   }, []);
 
-
   const changeQuestion = () => {
     const nextQuestion = currentQuestion + 1;
     if (id + 1 == quizCards[currentQuestion].correctAnswer) {
-      setScore(score + 1);
+      setScore((score) => score + 1);
       setBtnColor('#90ee90');
     } else {
       setBtnColor('#ff3232');
     }
 
     setTimeout(() => {
-
-      console.log('WHATS IN SCORE', score) //score is one behind
-
       setBtnColor('white');
       if (nextQuestion < quizCards.length) {
         setCurrentQuestion(currentQuestion + 1);
       } else {
-
-        const config = {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        };
-        const body = JSON.stringify({
-          name: name,
-          score: score,
-        });
-
-        axios
-          .post(`/api/results/${match.params.quizId}`, body, config) // change to paramsId
-          .then((res) => {
-            history.push({
-              pathname: `/results/${match.params.quizId}`,
-              state: { allResults: res.data.allResults, friendScore: score },
-            });
-          });
+        setShowResults(true);
       }
     }, 1000);
   };
@@ -130,7 +129,7 @@ function AnsOption({
   return (
     <div className='div-answer-choice py-3'>
       <button
-        onClick={changeQuestion}
+        onClick={() => changeQuestion()}
         style={{ backgroundColor: btnColor }}
         className='btn btn-answer-choice py-0 px-0'
       >
@@ -154,17 +153,3 @@ function AnsOption({
 
 export default QuizTakerCards;
 
-
-  // const [quizCards, setQuizCards] = useState([]);
-  // const [quizOwner, setQuizOwner] = useState("")
-
-  // useEffect(() => {
-  //   const fetchUserCards = () => {
-  //     axios.get(`/api/take-quiz/${match.params.quizId}`).then((res) => {
-  //       setQuizCards(res.data.quizInfo);
-  //       setQuizOwner(res.data.owner)
-  //     });
-  //   };
-
-  //   fetchUserCards();
-  // }, []);
