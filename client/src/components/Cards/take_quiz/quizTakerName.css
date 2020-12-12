@@ -1,5 +1,5 @@
 .enter-container{
-    background: url('../../../images/enter_name_4.png') no-repeat center center /cover;
+    background: url('../../../images/friend_prompt.png') no-repeat center center /cover;
     height: 100vh;
 }
 
@@ -12,7 +12,7 @@
 .enter-friend-name{
     height: 50px;
     display: flex;
-
+    margin-top: 50px;
 }
 
 .enter-name-input{
@@ -21,12 +21,12 @@
 
 .true-friend-header{
     font-family: 'Nerko One', cursive;
-    font-size: 80px;
-    width: 400px;
+    font-size: 100px;
+    width: 500px;
     color: white;
 
 }
 
 .enter-container{
-    padding: 240px 140px;
+    padding: 150px 140px;
 }

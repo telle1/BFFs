@@ -124,6 +124,26 @@ function AnsOption({
         setCurrentQuestion(currentQuestion + 1);
       } else {
         setShowScore(true);
+
+        // const config = {
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        // };
+        // const body = JSON.stringify({
+        //   name: name,
+        //   score: score,
+        // });
+
+        // axios
+        //   .post(`/api/results/${match.params.quizId}`, body, config) // change to paramsId
+        //   .then((res) => {
+        //     history.push({
+        //       pathname: `/results/${match.params.quizId}`,
+        //       state: { allResults: res.data.allResults },
+        //     });
+        //   });
+
         history.push({
           pathname: `/results/${match.params.quizId}`,
           state: { score: score, name: name, match: match },

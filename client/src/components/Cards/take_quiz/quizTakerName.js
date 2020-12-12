@@ -21,7 +21,7 @@ function QuizTakerName({match}){
             <div className="enter-friend-name">
             <input type= "text" placeholder="Enter name" className="enter-name-input"
             valye={name} onChange={(e) => setName(e.target.value)}></input>
-            <button type="submit" className="btn btn-blue" onClick={handleName}>Submit</button>
+            <button type="submit" className="btn pink-button" onClick={handleName}>Submit</button>
             </div>
         </div>
         }

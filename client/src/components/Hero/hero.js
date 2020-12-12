@@ -34,7 +34,7 @@ function Hero() {
         <h2 className='or align-self-center mt-2'>OR</h2>
         <button
           className='btn pink-button mt-2 d-block'
-          onClick={() => history.push('/create-quiz')}
+          onClick={() => history.push('/view-results')}
         >
           View my results
         </button>
