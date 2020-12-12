@@ -1,0 +1,11 @@
+
+
+.result-card{
+    background-color: pink;
+    max-height: 500px;
+    overflow: scroll;
+}
+
+.result-card-title{
+    font-family: 'Nerko One', cursive;
+}

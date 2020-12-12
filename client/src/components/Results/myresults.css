@@ -1,0 +1,25 @@
+.my-results-prompt{
+    background: url('../../images/view_results.png') no-repeat center center /cover;
+    height: 100vh;
+    max-height: 100vh;
+    padding: 50px 80px;
+}
+
+.who-is-my-bff{
+    font-family: 'Nerko One', cursive;
+    font-size: 150px;
+    color: white;
+    width: 650px;
+    text-transform: uppercase;
+}
+
+.results-input{
+    width: 400px;
+    height: 300px;
+}
+
+.code-input, .pin-input {
+    margin: 10px 0px;
+    height: 50px;
+    font-size: 30px;
+}
