@@ -68,7 +68,7 @@ function MyResults() {
           <div className='no-results'>
             <h1 className='no-results-msg'>
               Cricket, cricket. Noone has taken your quiz yet.
-            </h1>{' '}
+            </h1>
           </div>
         )
       ) : (

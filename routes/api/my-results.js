@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
       //   res.json({'results': results, 'quizOwner': results[0].quiz.userName}) 
       // })
       // .catch(err => console.log(err.message)) //res.json?
+      
       let allResults = await Results.find({ quiz : quiz.id }).populate('quiz').lean()
       allResults.sort((a,b) => (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0)); 
       allResults[0].rank = 1
