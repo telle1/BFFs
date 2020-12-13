@@ -15,7 +15,7 @@ function Results() {
   }, []);
 
   return (
-    <Row className='results'>
+    <Row className='result-score'>
       <Col xs={5} className='friends-score'>
         <h2 className="friends-header">
           Your <span className='font-weight-bold'>Score</span>

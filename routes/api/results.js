@@ -2,6 +2,8 @@ const express = require ('express')
 const Quiz = require('../../models/Quiz')
 const router = express.Router()
 const Results = require('../../models/Results')
+// const resHelper = require('./results-helper.js')
+
 
 //results/:quizId
 router.post('/:quizId', async (req,res) => {
@@ -66,6 +68,7 @@ router.post('/:quizId', async (req,res) => {
         }
 
         res.json({"allResults": allResults})
+        // resHelper.getResultsAndRank();
 
     } catch(err){
         console.log('ERROR MESSAGE', err.message)

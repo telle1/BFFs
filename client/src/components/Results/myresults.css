@@ -23,3 +23,34 @@
     height: 50px;
     font-size: 30px;
 }
+
+.no-results-msg {
+    font-family: "Nerko One", cursive;
+    font-size: 80px;
+    width: 800px;
+    color: white;
+    padding: 100px 80px;
+}
+
+.no-results, .my-results {
+    background: url('../../images/gradient-only.png') no-repeat center center /cover;
+    height: 100vh;
+    padding: 120px 80px;
+
+}
+
+
+.result-card{
+    height: 500px;
+    background-color: white;
+    width: 450px;
+    box-shadow: 4px 4px 10px 3px #DEDEDE;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.owner-name{
+    font-family: "Nerko One", cursive;
+    font-size: 50px;
+    color: #A98AEB;
+}
