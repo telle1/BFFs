@@ -13,8 +13,6 @@ router.get('/:quizId', async (req, res) => {
   } catch (err) {
     console.log('ERRIR MESSAGE', err.message);
   }
-
-  // 'e8a9db83-9b4e-4f07-af28-fca60636a2e9'
 });
 
 module.exports = router;

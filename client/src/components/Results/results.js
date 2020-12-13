@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Row, Col, Table } from 'react-bootstrap';
-import axios from 'axios';
+// import axios from 'axios';
 import './results.css';
 
 function Results() {
@@ -12,7 +12,7 @@ function Results() {
   useEffect(() => {
     setAllResults(location.state.allResults);
     setFriendScore(location.state.friendScore)
-  }, []);
+  }, [location]);
 
   return (
     <Row className='result-score'>

@@ -1,6 +1,6 @@
 import './question.css'
 
-function Question({ question, setQuestion, customQ }) {
+function Question({ question, cardNumber, setQuestion, customQ, setQuizInfo, quizInfo}) {
     return (
       <div>
         {customQ ? (
@@ -9,7 +9,13 @@ function Question({ question, setQuestion, customQ }) {
             className='question-text-area'
             placeholder='Custom question here'
             value={question}
-            onChange={(e) => setQuestion(e.target.value)}
+            onChange={(e) => {
+              setQuestion(e.target.value)
+              setQuizInfo({
+                ...quizInfo,
+                [cardNumber]: {...quizInfo[cardNumber], question: e.target.value}
+              })
+            }}
           ></textarea>
         ) : (
           <textarea

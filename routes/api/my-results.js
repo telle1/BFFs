@@ -21,15 +21,25 @@ router.post('/', async (req, res) => {
       // .catch(err => console.log(err.message)) //res.json?
       
       let allResults = await Results.find({ quiz : quiz.id }).populate('quiz').lean()
-      allResults.sort((a,b) => (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0)); 
-      allResults[0].rank = 1
-      for (let i=1; i<allResults.length; i++){
-          allResults[i].rank = i+1 
-          if (allResults[i].score === allResults[i-1].score){
-              allResults[i].rank = allResults[i-1].rank
-          }
+
+      //otherwise we get a cannot read rank/quiz of undefined
+      if (allResults.length > 0){
+
+        allResults.sort((a,b) => (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0)); 
+        allResults[0].rank = 1
+        for (let i=1; i<allResults.length; i++){
+            allResults[i].rank = i+1 
+            if (allResults[i].score === allResults[i-1].score){
+                allResults[i].rank = allResults[i-1].rank
+            }
+        }
+        res.json({'results': allResults, 'quizOwner': allResults[0].quiz.userName}) 
+
       }
-      res.json({'results': allResults, 'quizOwner': allResults[0].quiz.userName}) 
+
+
+
+      res.json({'results': allResults}) 
 
       })
       .catch(err => console.log(err.message)) //res.json?

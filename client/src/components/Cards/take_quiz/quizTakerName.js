@@ -23,7 +23,7 @@ function QuizTakerName({ match }) {
         console.log('HERES THE ERROR MSG', error);
         setIsValidRC(false);
       });
-  }, []);
+  }, [match]);
 
   const handleName = (e) => {
     e.preventDefault();

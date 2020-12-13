@@ -55,9 +55,6 @@ function MyResults() {
               <Table striped className='leaderboard-table'>
                 <tbody>
                   {allResults.map((result, i) => (
-                    // <p>
-                    //   {result.friendName} {result.score} {result.rank}
-                    // </p>
                     <ResultRow key={i} result={result}/>
                   ))}
                 </tbody>
@@ -67,7 +64,7 @@ function MyResults() {
         ) : (
           <div className='no-results'>
             <h1 className='no-results-msg'>
-              Cricket, cricket. Noone has taken your quiz yet.
+              Cricket, cricket. No one has taken your quiz yet.
             </h1>
           </div>
         )

@@ -4,45 +4,43 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Card from './card.js';
 import axios from 'axios';
 
-const premadeQuestions = [
-  { question: 'Why do I...?', answer: ['a', 'b', 'c', 'd'] },
-  { question: 'Where was my best vacation?', answer: ['e', 'f', 'g', 'h'] },
-  { question: 'What was the name of my favorite stuffed animal?', answer: ['i', 'j', 'k', 'l'] },
-  { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'What is my favorite color', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'What sport do I like watching the best?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'What is my middle name?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'What is my favorite drink?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'What was my craziest night?', answer: ['m', 'n', 'o', 'p'] },
-  { question: 'What is my favorite subject?', answer: ['History', 'Computer Science', 'English', 'Biology'] },
-];
+// const premadeCards = {
+//   1: { number: 1, bgColor: "#FF9AA2", question: 'Why do I...?', correctAnswer: "", ansOptions: ['a', 'b', 'c', 'd'] },
+//   2: { number: 2, bgColor: "#FFB7B2", question: 'Where was my best vacation?', correctAnswer: "", ansOptions: ['e', 'f', 'g', 'h'] },
+//   3: { number: 3, bgColor: "#FFB347", question: 'What was the name of my favorite stuffed animal?', correctAnswer: "", ansOptions: ['i', 'j', 'k', 'l'] },
+//   4: { number: 4, bgColor: "#FFDAC1", question: 'Where was my childhood home?', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   5: { number: 5, bgColor: "#B5EAD7", question: 'What is my favorite color', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   6: { number: 6, bgColor: "#E2F0CB", question: 'What sport do I like watching the best?', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   7: { number: 7, bgColor: "#85E3FF", question: 'What is my middle name?', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   8: { number: 8, bgColor: "#ACE7FF", question: 'What is my favorite drink?', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   9: { number: 9, bgColor: "#B28DFF", question: 'What was my craziest night?', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   10: { number: 10, bgColor: "#97A2FF", question: 'What is my favorite subject?', correctAnswer: "", ansOptions: ['History', 'Computer Science', 'English', 'Biology'] },
+// };
 
-// let questions = {
-//   1: {question: 'Why do I...?', answer: ['a', 'b', 'c', 'd'] },
-//   2: {question: 'Where was my best vacation?', answer: ['e', 'f', 'g', 'h'] },
-//   3: {question: 'What was the name of my favorite stuffed animal?', answer: ['i', 'j', 'k', 'l'] },
-//   4: { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
-//   5: { question: 'What is my favorite color', answer: ['m', 'n', 'o', 'p'] },
-//   6: { question: 'What sport do I like watching the best?', answer: ['m', 'n', 'o', 'p'] },
-//   7: { question: 'What is my middle name?', answer: ['m', 'n', 'o', 'p'] },
-//   8: { question: 'What is my favorite drink?', answer: ['m', 'n', 'o', 'p'] },
-//   9: { question: 'What was my craziest night?', answer: ['m', 'n', 'o', 'p'] },
-//   10: { question: 'What is my favorite subject?', answer: ['History', 'Computer Science', 'English', 'Biology'] }
-// }
+const premadeCards = {
+  1: { number: 1, bgColor: "#FF9AA2", question: 'Why do I...?', correctAnswer: "", ansOptions: {1: 'a', 2: 'b', 3: 'c', 4: 'd'} },
+  2: { number: 2, bgColor: "#FFB7B2", question: 'Where was my best vacation?', correctAnswer: "", ansOptions: {1: 'e', 2: 'f', 3: 'g', 4: 'h'} },
+  3: { number: 3, bgColor: "#FFB347", question: 'What was the name of my favorite stuffed animal?', correctAnswer: "", ansOptions: {1: 'i', 2: 'j', 3: 'k', 4:'l'} },
+  4: { number: 4, bgColor: "#FFDAC1", question: 'Where was my childhood home?', correctAnswer: "", ansOptions: {1: 'a', 2: 'b', 3: 'c', 4: 'd'} },
+  5: { number: 5, bgColor: "#B5EAD7", question: 'What is my favorite color', correctAnswer: "", ansOptions: {1: 'e', 2: 'f', 3: 'g', 4: 'h'} },
+  6: { number: 6, bgColor: "#E2F0CB", question: 'What sport do I like watching the best?', correctAnswer: "", ansOptions: {1: 'i', 2: 'j', 3: 'k', 4:'l'} },
+  7: { number: 7, bgColor: "#85E3FF", question: 'What is my middle name?', correctAnswer: "", ansOptions: {1: 'a', 2: 'b', 3: 'c', 4: 'd'} },
+  8: { number: 8, bgColor: "#ACE7FF", question: 'What is my favorite drink?', correctAnswer: "", ansOptions: {1: 'e', 2: 'f', 3: 'g', 4: 'h'} },
+  9: { number: 9, bgColor: "#B28DFF", question: 'What was my craziest night?', correctAnswer: "", ansOptions: {1: 'i', 2: 'j', 3: 'k', 4:'l'} },
+  10: { number: 10, bgColor: "#97A2FF", question: 'What is my favorite subject?', correctAnswer: "", ansOptions: {1: 'a', 2: 'b', 3: 'c', 4: 'd'} },
+};
+
 
 function AllCards() {
   const history = useHistory();
   const location = useLocation();
 
   const [name, setName] = useState("")
-  const [quizInfo, setQuizInfo] = useState([]);
+  const [quizInfo, setQuizInfo] = useState(premadeCards);
 
   useEffect(() => {
-    console.log(location.state.name)
     setName(location.state.name)
   }, [location])
-
-  console.log('WHATS IN NAME', name)
 
   console.log('HERES ALL THE QUIZ INFO', quizInfo);
 
@@ -67,25 +65,13 @@ function AllCards() {
   return (
     <Form onSubmit={handleQuestionSubmit} className="mt-5 mb-5">
       <h1 className="d-flex justify-content-center mb-3 quiz-header">Ask away, {name}! </h1>
-      {[
-        '#FF9AA2',
-        '#FFB7B2',
-        '#FFB347',
-        '#FFDAC1',
-        '#B5EAD7',
-        '#E2F0CB',
-        '#85E3FF',
-        '#ACE7FF',
-        '#B28DFF',
-        '#97A2FF',
-      ].map((cardColor, i) => (
+    {[...Array(10)].map((card, i) => (
         <Card
-          key={cardColor}
-          questionNumber={i + 1}
-          cardColor={cardColor}
-          defaultQ={premadeQuestions[i].question}
-          defaultA={premadeQuestions[i].answer}
-          premadeQuestions={premadeQuestions}
+          key={premadeCards[i+1].number}
+          cardNumber={i+1}
+          cardColor={premadeCards[i+1].bgColor}
+          defaultQ={premadeCards[i+1].question}
+          defaultA={premadeCards[i+1].ansOptions}
           quizInfo={quizInfo}
           setQuizInfo={setQuizInfo}
         ></Card>
@@ -101,21 +87,43 @@ function AllCards() {
 
 export default AllCards;
 
-
-//    // {
-    //   number: 1,
-    //   question: '',
-    //   correctAnswer: "",
-    //   answer: '',
-    //   bgColor: '',
-    //   answerOptions: '',
-    // },     {
-    //     number: 2,
-    //     question: '',
-    //     correctAnswer: "",
-    //     answer: '',
-    //     bgColor: '',
-    //     answerOptions: '',
-    //   }
+      {/* {premadeCards.map((card, i) => (
+        <Card
+          key={premadeCards[i].number}
+          questionNumber={i + 1}
+          cardColor={premadeCards[i].bgColor}
+          defaultQ={premadeCards[i].question}
+          defaultA={premadeCards[i].ansOptions}
+          quizInfo={quizInfo}
+          setQuizInfo={setQuizInfo}
+        ></Card>
+      ))} */}
 
 
+
+
+      // let questions = {
+//   1: {question: 'Why do I...?', answer: ['a', 'b', 'c', 'd'] },
+//   2: {question: 'Where was my best vacation?', answer: ['e', 'f', 'g', 'h'] },
+//   3: {question: 'What was the name of my favorite stuffed animal?', answer: ['i', 'j', 'k', 'l'] },
+//   4: { question: 'Where was my childhood home?', answer: ['m', 'n', 'o', 'p'] },
+//   5: { question: 'What is my favorite color', answer: ['m', 'n', 'o', 'p'] },
+//   6: { question: 'What sport do I like watching the best?', answer: ['m', 'n', 'o', 'p'] },
+//   7: { question: 'What is my middle name?', answer: ['m', 'n', 'o', 'p'] },
+//   8: { question: 'What is my favorite drink?', answer: ['m', 'n', 'o', 'p'] },
+//   9: { question: 'What was my craziest night?', answer: ['m', 'n', 'o', 'p'] },
+//   10: { question: 'What is my favorite subject?', answer: ['History', 'Computer Science', 'English', 'Biology'] }
+// }
+
+// const premadeCards = [
+//   { number: 1, bgColor: "#FF9AA2", question: 'Why do I...?', correctAnswer: "", ansOptions: ['a', 'b', 'c', 'd'] },
+//   { number: 2, bgColor: "#FFB7B2", question: 'Where was my best vacation?', correctAnswer: "", ansOptions: ['e', 'f', 'g', 'h'] },
+//   { number: 3, bgColor: "#FFB347", question: 'What was the name of my favorite stuffed animal?', correctAnswer: "", ansOptions: ['i', 'j', 'k', 'l'] },
+//   { number: 4, bgColor: "#FFDAC1", question: 'Where was my childhood home?', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   { number: 5, bgColor: "#B5EAD7", question: 'What is my favorite color', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   { number: 6, bgColor: "#E2F0CB", question: 'What sport do I like watching the best?', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   { number: 7, bgColor: "#85E3FF", question: 'What is my middle name?', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   { number: 8, bgColor: "#ACE7FF", question: 'What is my favorite drink?', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   { number: 9, bgColor: "#B28DFF", question: 'What was my craziest night?', correctAnswer: "", ansOptions: ['m', 'n', 'o', 'p'] },
+//   { number: 10, bgColor: "#97A2FF", question: 'What is my favorite subject?', correctAnswer: "", ansOptions: ['History', 'Computer Science', 'English', 'Biology'] },
+// ];
