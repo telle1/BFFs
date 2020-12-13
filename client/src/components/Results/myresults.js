@@ -20,12 +20,15 @@ function MyResults() {
       pin: pin,
     });
 
-    axios.post(`/api/my-results`, body, config).then((res) => {
+    axios.post(`/api/my-results`, body, config)
+    .then((res) => {
       // setShowResults(true);
       // setAllResults(res.data.allResults)
       // console.log(res.data.errors.msg)
       // console.log(res.data)
-    });
+      console.log(res)
+    })
+    .catch(err => console.log('ERROR MESSAGE', err))
   };
 
   return (
@@ -34,18 +37,16 @@ function MyResults() {
         {showResults ? (
           <div>hi </div>
         ) : (
-          <div>
-            {/* <h1 className='who-is-my-bff'>Who is my BFF?</h1> */}
             <form onSubmit={handleResults}>
               <div className='results-input d-flex flex-column'>
-                <input
-                  type='text'
+                <input required
+                  type='text'  
                   className='code-input'
                   placeholder='Room code'
                   value={roomCode}
                   onChange={(e) => setRoomCode(e.target.value)}
                 ></input>
-                <input
+                <input required
                   type='text'
                   className='pin-input'
                   placeholder='Pin'
@@ -58,7 +59,6 @@ function MyResults() {
                 </button>
               </div>
             </form>
-          </div>
         )}
       </div>
     </React.Fragment>

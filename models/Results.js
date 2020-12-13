@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
 const ResultsSchema = new mongoose.Schema({
-    quizId: {
-        type: String,
-        required: true
-    }, //roomCode?
+    quiz: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'quiz'
+    },
     friendName: {
         type: String,
         required: true

@@ -26,7 +26,7 @@ function Results() {
         <p className="small-score">{friendScore} out of 10</p>
       </Col>
       <Col xs={7} className='leaderboard'>
-        <h2 className="lb-header"> Name's <span className="font-weight-bold">BFFs</span></h2>
+        <h2 className="lb-header"> {location.state.quizOwner}'s <span className="font-weight-bold">BFFs</span></h2>
         <Table striped className='leaderboard-table'>
           <tbody>
           

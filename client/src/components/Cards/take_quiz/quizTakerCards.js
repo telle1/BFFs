@@ -27,7 +27,7 @@ function QuizTakerCards({ name, match, quizCards, quizOwner }) {
         .then((res) => {
           history.push({
             pathname: `/results/${match.params.quizId}`,
-            state: { allResults: res.data.allResults, friendScore: score },
+            state: { allResults: res.data.allResults, friendScore: score, quizOwner: quizOwner },
           });
         });
     }

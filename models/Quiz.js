@@ -6,7 +6,7 @@ const QuizSchema = new mongoose.Schema({
     }, 
     roomCode: {
         type: String,
-        ref: 'User'
+        required: true, //?
     },
     pin: {
         type: String,

@@ -6,7 +6,6 @@
     margin-top: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     box-shadow: 4px 4px 10px 3px #DEDEDE;
-    overflow: scroll;
 }
 
 .friends-header{
@@ -62,7 +61,9 @@
 .leaderboard {
     border-left: none;
     text-align: center;
-    padding-top: 40px;    
+    padding-top: 40px;   
+    height: 500px;
+    overflow: scroll;
 }
 
 .leaderboard-table{
