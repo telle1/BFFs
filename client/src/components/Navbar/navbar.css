@@ -1,0 +1,10 @@
+.my-navbar{
+    position: absolute; 
+    margin: 0px 4%;
+    top: 2%;
+}
+
+.nav-link {
+    font-size: 20px;
+}
+

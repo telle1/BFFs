@@ -54,6 +54,7 @@ function Card({
           <div className='card-content'>
             {/* Question Components */}
             <div className='question mb-2'>
+              <h2>QUESTION {cardNumber}</h2>
               {/* Question input field */}
               <Question
                 quizInfo={quizInfo}
