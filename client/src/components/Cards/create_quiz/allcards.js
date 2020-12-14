@@ -5,28 +5,88 @@ import Card from './card.js';
 import axios from 'axios';
 
 const premadeCards = {
-  1: { number: 1, bgColor: "#FF9AA2", question: 'Why do I...?', correctAnswer: "", ansOptions: {1: 'a', 2: 'b', 3: 'c', 4: 'd'} },
-  2: { number: 2, bgColor: "#FFB7B2", question: 'Where was my best vacation?', correctAnswer: "", ansOptions: {1: 'e', 2: 'f', 3: 'g', 4: 'h'} },
-  3: { number: 3, bgColor: "#FFB347", question: 'What was the name of my favorite stuffed animal?', correctAnswer: "", ansOptions: {1: 'i', 2: 'j', 3: 'k', 4:'l'} },
-  4: { number: 4, bgColor: "#FFDAC1", question: 'Where was my childhood home?', correctAnswer: "", ansOptions: {1: 'a', 2: 'b', 3: 'c', 4: 'd'} },
-  5: { number: 5, bgColor: "#B5EAD7", question: 'What is my favorite color', correctAnswer: "", ansOptions: {1: 'e', 2: 'f', 3: 'g', 4: 'h'} },
-  6: { number: 6, bgColor: "#E2F0CB", question: 'What sport do I like watching the best?', correctAnswer: "", ansOptions: {1: 'i', 2: 'j', 3: 'k', 4:'l'} },
-  7: { number: 7, bgColor: "#85E3FF", question: 'What is my middle name?', correctAnswer: "", ansOptions: {1: 'a', 2: 'b', 3: 'c', 4: 'd'} },
-  8: { number: 8, bgColor: "#ACE7FF", question: 'What is my favorite drink?', correctAnswer: "", ansOptions: {1: 'e', 2: 'f', 3: 'g', 4: 'h'} },
-  9: { number: 9, bgColor: "#B28DFF", question: 'What was my craziest night?', correctAnswer: "", ansOptions: {1: 'i', 2: 'j', 3: 'k', 4:'l'} },
-  10: { number: 10, bgColor: "#97A2FF", question: 'What is my favorite subject?', correctAnswer: "", ansOptions: {1: 'a', 2: 'b', 3: 'c', 4: 'd'} },
+  1: {
+    number: 1,
+    bgColor: '#FF9AA2',
+    question: 'Why do I...?',
+    correctAnswer: '',
+    ansOptions: { 1: 'a', 2: 'b', 3: 'c', 4: 'd' },
+  },
+  2: {
+    number: 2,
+    bgColor: '#FFB7B2',
+    question: 'Where was my best vacation?',
+    correctAnswer: '',
+    ansOptions: { 1: 'e', 2: 'f', 3: 'g', 4: 'h' },
+  },
+  3: {
+    number: 3,
+    bgColor: '#FFB347',
+    question: 'What was the name of my favorite stuffed animal?',
+    correctAnswer: '',
+    ansOptions: { 1: 'i', 2: 'j', 3: 'k', 4: 'l' },
+  },
+  4: {
+    number: 4,
+    bgColor: '#FFDAC1',
+    question: 'Where was my childhood home?',
+    correctAnswer: '',
+    ansOptions: { 1: 'a', 2: 'b', 3: 'c', 4: 'd' },
+  },
+  5: {
+    number: 5,
+    bgColor: '#B5EAD7',
+    question: 'What is my favorite color',
+    correctAnswer: '',
+    ansOptions: { 1: 'e', 2: 'f', 3: 'g', 4: 'h' },
+  },
+  6: {
+    number: 6,
+    bgColor: '#E2F0CB',
+    question: 'What sport do I like watching the best?',
+    correctAnswer: '',
+    ansOptions: { 1: 'i', 2: 'j', 3: 'k', 4: 'l' },
+  },
+  7: {
+    number: 7,
+    bgColor: '#85E3FF',
+    question: 'What is my middle name?',
+    correctAnswer: '',
+    ansOptions: { 1: 'a', 2: 'b', 3: 'c', 4: 'd' },
+  },
+  8: {
+    number: 8,
+    bgColor: '#ACE7FF',
+    question: 'What is my favorite drink?',
+    correctAnswer: '',
+    ansOptions: { 1: 'e', 2: 'f', 3: 'g', 4: 'h' },
+  },
+  9: {
+    number: 9,
+    bgColor: '#B28DFF',
+    question: 'What was my craziest night?',
+    correctAnswer: '',
+    ansOptions: { 1: 'i', 2: 'j', 3: 'k', 4: 'l' },
+  },
+  10: {
+    number: 10,
+    bgColor: '#97A2FF',
+    question: 'What is my favorite subject?',
+    correctAnswer: '',
+    ansOptions: { 1: 'a', 2: 'b', 3: 'c', 4: 'd' },
+  },
 };
 
 function AllCards() {
   const history = useHistory();
   const location = useLocation();
 
-  const [name, setName] = useState("")
+  const [name, setName] = useState('');
   const [quizInfo, setQuizInfo] = useState(premadeCards);
 
   useEffect(() => {
-    setName(location.state.name)
-  }, [location])
+    setName(location.state.name);
+  }, [location]);
 
   console.log('HERES ALL THE QUIZ INFO', quizInfo);
 
@@ -42,22 +102,27 @@ function AllCards() {
       const body = JSON.stringify({ quizInfo: quizInfo, userName: name });
       const res = await axios.post('/api/invite', body, config);
       console.log('wHAT IS THE DATA', res.data);
-      history.push({pathname: '/invite', state: {roomCode: res.data.roomCode}});
+      history.push({
+        pathname: '/invite',
+        state: { roomCode: res.data.roomCode },
+      });
     } catch (err) {
       console.error(err.message);
     }
   };
 
   return (
-    <Form onSubmit={handleQuestionSubmit} className="mt-5 mb-5">
-      <h1 className="d-flex justify-content-center mb-3 quiz-header">Ask away, {name}! </h1>
-    {[...Array(10)].map((card, i) => (
+    <Form onSubmit={handleQuestionSubmit} className='mt-5 mb-5'>
+      <h1 className='d-flex justify-content-center mb-3 quiz-header'>
+        Ask away, {name}!{' '}
+      </h1>
+      {Object.keys(quizInfo).map((cardNum, i) => (
         <Card
-          key={premadeCards[i+1].number}
-          cardNumber={i+1}
-          cardColor={premadeCards[i+1].bgColor}
-          defaultQ={premadeCards[i+1].question}
-          defaultA={premadeCards[i+1].ansOptions}
+          key={cardNum}
+          cardNumber={cardNum}
+          cardColor={premadeCards[cardNum].bgColor}
+          defaultQ={premadeCards[cardNum].question}
+          defaultA={premadeCards[cardNum].ansOptions}
           quizInfo={quizInfo}
           setQuizInfo={setQuizInfo}
         ></Card>
@@ -73,7 +138,8 @@ function AllCards() {
 
 export default AllCards;
 
-      {/* {premadeCards.map((card, i) => (
+{
+  /* {premadeCards.map((card, i) => (
         <Card
           key={premadeCards[i].number}
           questionNumber={i + 1}
@@ -83,7 +149,8 @@ export default AllCards;
           quizInfo={quizInfo}
           setQuizInfo={setQuizInfo}
         ></Card>
-      ))} */}
+      ))} */
+}
 
 // const premadeCards = {
 //   1: { number: 1, bgColor: "#FF9AA2", question: 'Why do I...?', correctAnswer: "", ansOptions: ['a', 'b', 'c', 'd'] },
@@ -98,7 +165,7 @@ export default AllCards;
 //   10: { number: 10, bgColor: "#97A2FF", question: 'What is my favorite subject?', correctAnswer: "", ansOptions: ['History', 'Computer Science', 'English', 'Biology'] },
 // };
 
-      // let questions = {
+// let questions = {
 //   1: {question: 'Why do I...?', answer: ['a', 'b', 'c', 'd'] },
 //   2: {question: 'Where was my best vacation?', answer: ['e', 'f', 'g', 'h'] },
 //   3: {question: 'What was the name of my favorite stuffed animal?', answer: ['i', 'j', 'k', 'l'] },

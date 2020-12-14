@@ -7,7 +7,8 @@ function AddAnswer({
 }) {
   let ansOptionlength = Object.keys(ansOptions).length;
   let nextOptionNum = Number(ansOptionlength) + 1;
-
+  
+  console.log('ansoptionlength', ansOptionlength, 'nextoptionum', nextOptionNum)
   const addAnswerOption = (e) => {
     e.preventDefault();
 

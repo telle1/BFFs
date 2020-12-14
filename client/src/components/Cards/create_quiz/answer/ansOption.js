@@ -9,71 +9,72 @@ function AnsOption({
   ansOptions,
   cardNumber,
   setQuizInfo,
-  quizInfo, correctAnswer, setCorrectAnswer
-
+  quizInfo,
+  correctAnswer,
+  setCorrectAnswer,
 }) {
-
-
   const rmvAnswer = (e) => {
     e.preventDefault();
 
-    let ansOptionTemp = {...ansOptions}
-    delete ansOptionTemp[ansNum]
-    setAnsOptions(ansOptionTemp)
+    console.log('wjats in ansoptions', ansOptions);
+
+    let ansOptionTemp = { ...ansOptions };
+    delete ansOptionTemp[ansNum];
+    setAnsOptions(ansOptionTemp);
 
     setQuizInfo({
       ...quizInfo,
       [cardNumber]: {
         ...quizInfo[cardNumber],
-        ansOptions: ansOptionTemp
+        ansOptions: ansOptionTemp,
       },
     });
   };
 
   return (
-    <div className='answer-choice d-flex justify-content-center align-items-center'>
-      <input
-        type='radio'
-        id={ansNum}
-        name='answer_options'
-        value={ansChoice}
-        className='mr-1'
-        onChange={() => {
-          setCorrectAnswer(ansNum);
-
-          setQuizInfo({
-            ...quizInfo,
-            [cardNumber]: { ...quizInfo[cardNumber], correctAnswer: ansNum },
-          });
-        }}
-        required
-      />
-      <label htmlFor='answer-option' className='my-0 mr-2'>
-        <textarea
-          rows='2'
-          className='answer-option'
+    <Form>
+      <div className='answer-choice d-flex justify-content-center align-items-center'>
+        <input
+          type='radio'
+          id={ansNum}
+          name='answer_options'
           value={ansChoice}
-          onChange={(e) => {
-            e.preventDefault();
-
-            setAnsOptions({ ...ansOptions, [ansNum]: e.target.value });
-
+          className='mr-1'
+          onChange={() => {
+            setCorrectAnswer(ansNum);
             setQuizInfo({
               ...quizInfo,
-              [cardNumber]: {
-                ...quizInfo[cardNumber],
-                ansOptions: { ...ansOptions, [ansNum]: e.target.value },
-              },
+              [cardNumber]: { ...quizInfo[cardNumber], correctAnswer: ansNum },
             });
           }}
-        ></textarea>
-      </label>
+          required
+        />
+        <label htmlFor='answer-option' className='my-0 mr-2'>
+          <textarea
+            rows='2'
+            className='answer-option'
+            value={ansChoice}
+            onChange={(e) => {
+              e.preventDefault();
 
-      <button className='btn' onClick={rmvAnswer}>
-        <i className='fas fa-times' style={{ color: 'white' }}></i>
-      </button>
-    </div>
+              setAnsOptions({ ...ansOptions, [ansNum]: e.target.value });
 
+              setQuizInfo({
+                ...quizInfo,
+                [cardNumber]: {
+                  ...quizInfo[cardNumber],
+                  ansOptions: { ...ansOptions, [ansNum]: e.target.value },
+                },
+              });
+            }}
+          ></textarea>
+        </label>
+
+        <button className='btn' onClick={rmvAnswer}>
+          <i className='fas fa-times' style={{ color: 'white' }}></i>
+        </button>
+      </div>
+    </Form>
   );
 }
 
@@ -161,8 +162,6 @@ export default AnsOption;
 // }
 
 // export default AnsOption;
-
-
 
 // function AnsOption({
 //   optionNum,

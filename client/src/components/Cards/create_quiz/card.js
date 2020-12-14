@@ -7,13 +7,14 @@ import Question from './question/question';
 import QuestionDropdown from './question/questionDropdown';
 
 function Card({
-  cardNumber,
   quizInfo,
   setQuizInfo,
   defaultQ,
   defaultA,
   cardColor,
+  cardNumber
 }) {
+
 
   const [question, setQuestion] = useState(defaultQ);
   const [customQ, setCustomQ] = useState(false);
@@ -21,10 +22,6 @@ function Card({
   const [bgColor, setBgColor] = useState(cardColor);
   const [correctAnswer, setCorrectAnswer] = useState('');
 
-  // const [question, setQuestion] = useState();
-  // const [customQ, setCustomQ] = useState(false);
-  // const [ansOptions, setAnsOptions] = useState();
-  // const [bgColor, setBgColor] = useState();
   const colors = [
     '#FF9AA2',
     '#FFB7B2',
