@@ -1,11 +1,20 @@
+.for-background {
+    background:  url('../../images/gradient_only.png') no-repeat center center /cover;
+    height: 100vh;
+}
+
+
+
 .result-score {
-    margin: auto;
     width: 800px;
     height: 500px;
     max-height: 500px;
-    margin-top: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     box-shadow: 4px 4px 10px 3px #DEDEDE;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .friends-header{
@@ -13,8 +22,7 @@
 }
 
 .friends-score {
-    background-color: #f8ceec;
-    background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+    background-image: linear-gradient(315deg, #B7FFFF  0%, #C79AFF 74%);
     color: white;
     text-align: center;
     padding: 40px 0px; 
@@ -32,7 +40,7 @@
 
 .big-score{
     font-size: 80px;
-    color: #A98AEB;
+    color: #C79AFF;
     margin: auto;
     font-family: "Nerko One", cursive;
 }
@@ -45,14 +53,14 @@
     text-align: center;
     font-family: "Nerko One", cursive;
     font-size: 40px;
-    color: #A98AEB;
+    color: #C79AFF;
 }
 
 .lb-score{
     border-radius: 50%;
     height: 30px;
     width: 30px;
-    background-color: #E7C0EC;
+    background-color: #90D8FF;
     color: white;
     line-height: 30px;
     margin: auto;

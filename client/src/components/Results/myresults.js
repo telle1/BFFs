@@ -89,7 +89,7 @@ function MyResults() {
                 onChange={(e) => setPin(e.target.value)}
               ></input>
               <br />
-              <button type='submit' className='btn btn-blue'>
+              <button type='submit' className='btn pink-button'>
                 Let's find out!
               </button>
               {showError ? (

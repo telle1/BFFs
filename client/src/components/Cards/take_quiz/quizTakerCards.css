@@ -11,13 +11,13 @@
     padding: 10px;
 } */
 
-.card-left{
+/* .card-left{
     margin: 2% 10%;
-}
+} */
 
 .show-cards{
     height: 100vh;
-    background:  url('../../../images/cards_view.png') no-repeat center center /cover;
+    background:  url('../../../images/gradient_only.png') no-repeat center center /cover;
 }
 
 .how-well-header{
@@ -25,6 +25,7 @@
     color: gray;
     text-align: center;
     font-size: 70px;
+    padding-top: 50px;
 }
 
 .btn-answer-choice{

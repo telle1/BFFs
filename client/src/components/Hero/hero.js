@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Navbar from '../../components/Navbar/navbar.js'
+
 import './hero.css';
 
 function Hero() {

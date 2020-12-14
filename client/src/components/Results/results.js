@@ -25,6 +25,7 @@ function Results() {
   return (
     <React.Fragment>
     {error ?  <div className="error-404"></div> :
+    <div className="for-background">
     <Row className='result-score'>
       <Col xs={5} className='friends-score'>
         <h2 className="friends-header">
@@ -49,6 +50,7 @@ function Results() {
         </Table>
       </Col>
     </Row>
+    </div>
 }
     </React.Fragment>
   );

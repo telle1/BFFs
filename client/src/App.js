@@ -8,12 +8,14 @@ import AllCards from './components/Cards/create_quiz/allcards.js'
 import QuizTakerName from './components/Cards/take_quiz/quizTakerName.js'
 import Results from './components/Results/results.js'
 import MyResults from './components/Results/myresults.js'
+import MyNavbar from './components/Navbar/navbar.js'
 
 
 function App() {
 
   return (
   <Router>
+    <MyNavbar></MyNavbar>
     <Switch>
     <Route exact path="/" component={Hero}></Route>
     <Route path="/invite" component={Invite}></Route>
