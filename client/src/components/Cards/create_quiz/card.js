@@ -81,7 +81,8 @@ function Card({
                   key={num}
                   ansChoice={ansOptions[num]}
                   ansOptions={ansOptions}
-                  ansNum={num}
+                  ansNum={num} 
+                  // ansNum={i+1}
                   setAnsOptions={setAnsOptions}
                   cardNumber={cardNumber}
                   quizInfo={quizInfo}
