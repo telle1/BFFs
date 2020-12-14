@@ -6,8 +6,7 @@ function AddAnswer({
   ansOptions,
 }) {
   let ansOptionlength = Object.keys(ansOptions).length;
-  let lastOptionNum = Object.keys(ansOptions)[ansOptionlength - 1];
-  let nextOptionNum = Number(lastOptionNum) + 1;
+  let nextOptionNum = Number(ansOptionlength) + 1;
 
   const addAnswerOption = (e) => {
     e.preventDefault();

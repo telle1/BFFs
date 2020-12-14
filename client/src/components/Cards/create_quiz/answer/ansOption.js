@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap'
+import { Form } from 'react-bootstrap';
 import './ansOption.css';
 
 function AnsOption({
@@ -9,18 +9,16 @@ function AnsOption({
   ansOptions,
   cardNumber,
   setQuizInfo,
-  quizInfo
-  
+  quizInfo, correctAnswer, setCorrectAnswer
+
 }) {
 
-  const [correctAnswer, setCorrectAnswer] = useState('');
 
   const rmvAnswer = (e) => {
     e.preventDefault();
 
     let ansOptionTemp = {...ansOptions}
     delete ansOptionTemp[ansNum]
-    console.log('what be in temp', ansOptionTemp)
     setAnsOptions(ansOptionTemp)
 
     setQuizInfo({
@@ -82,50 +80,43 @@ function AnsOption({
 export default AnsOption;
 
 // function AnsOption({
-//   optionNum,
-//   ansOption,
+//   ansNum,
+//   ansChoice,
 //   setAnsOptions,
 //   ansOptions,
-//   cardNumber,
-//   setCorrectAnswer,
 //   setQuizInfo,
 //   quizInfo,
-//   correctAnswer,
+//   cardNumber,
 // }) {
-//   // const [ansText, setAnsText] = useState();
-
-//   // useEffect(() => {
-//   //   setAnsText(ansOption);
-//   // }, [ansOption]);
+//   const [correctAnswer, setCorrectAnswer] = useState('');
 
 //   const rmvAnswer = (e) => {
 //     e.preventDefault();
-//     const newAnsOptions = ansOptions.filter((ans, i) => i !== optionNum);
+//     const newAnsOptions = ansOptions.filter((ans, i) => i !== ansNum - 1);
 //     setAnsOptions(newAnsOptions);
 
 //     setQuizInfo({
 //       ...quizInfo,
 //       [cardNumber]: {
 //         ...quizInfo[cardNumber],
-//         ansOptions: newAnsOptions
+//         ansOptions: newAnsOptions,
 //       },
 //     });
-
 //   };
 
 //   return (
 //     <div className='answer-choice d-flex justify-content-center align-items-center'>
 //       <input
 //         type='radio'
-//         id={optionNum}
+//         id={ansNum}
 //         name='answer_options'
-//         value={ansOption}
+//         value={ansChoice}
 //         className='mr-1'
 //         onClick={() => {
-//           setCorrectAnswer(optionNum);
+//           setCorrectAnswer(ansNum);
 //           setQuizInfo({
 //             ...quizInfo,
-//             [cardNumber]: { ...quizInfo[cardNumber], correctAnswer: optionNum },
+//             [cardNumber]: { ...quizInfo[cardNumber], correctAnswer: ansNum },
 //           });
 //         }}
 //         required
@@ -134,21 +125,30 @@ export default AnsOption;
 //         <textarea
 //           rows='2'
 //           className='answer-option'
-//           value={ansOption}
+//           value={ansChoice}
 //           onChange={(e) => {
 
-//             const changeAns = ansOptions.filter((ans, i) => i === optionNum);
+//             const filterAns = ansOptions.filter((ans, i) => i+1 != ansNum);
+//             console.log(filterAns,' whats il infilter ans') //b,c,d
 
-//             setAnsOptions([...ansOptions, e.target.value]);
-
-//             setQuizInfo({
-//               ...quizInfo,
-//               [cardNumber]: {
-//                 ...quizInfo[cardNumber],
-//                 ansOptions: [...ansOptions, e.target.value]
-//               },
+//             let changeAns = ansOptions.map((ans, i) => {
+//               if (i + 1 == ansNum) {
+//                 return [e.target.value];
+//               } else {
+//                 return [...ans];
+//               }
 //             });
 
+//             // setAnsOptions([...ansOptions, e.target.value]);
+//             setAnsOptions([changeAns])
+
+//             // setQuizInfo({
+//             //   ...quizInfo,
+//             //   [cardNumber]: {
+//             //     ...quizInfo[cardNumber],
+//             //     ansOptions: [...ansOptions, e.target.value],
+//             //   },
+//             // });
 //           }}
 //         ></textarea>
 //       </label>
@@ -161,6 +161,8 @@ export default AnsOption;
 // }
 
 // export default AnsOption;
+
+
 
 // function AnsOption({
 //   optionNum,

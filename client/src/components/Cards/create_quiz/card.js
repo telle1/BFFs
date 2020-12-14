@@ -5,8 +5,6 @@ import AnsOption from './answer/ansOption';
 import AddAnswer from './answer/addAns';
 import Question from './question/question';
 import QuestionDropdown from './question/questionDropdown';
-const { v4: uuidv4 } = require('uuid');
-
 
 function Card({
   cardNumber,
@@ -16,11 +14,17 @@ function Card({
   defaultA,
   cardColor,
 }) {
+
   const [question, setQuestion] = useState(defaultQ);
   const [customQ, setCustomQ] = useState(false);
   const [ansOptions, setAnsOptions] = useState(defaultA);
   const [bgColor, setBgColor] = useState(cardColor);
+  const [correctAnswer, setCorrectAnswer] = useState('');
 
+  // const [question, setQuestion] = useState();
+  // const [customQ, setCustomQ] = useState(false);
+  // const [ansOptions, setAnsOptions] = useState();
+  // const [bgColor, setBgColor] = useState();
   const colors = [
     '#FF9AA2',
     '#FFB7B2',
@@ -32,7 +36,7 @@ function Card({
     '#ACE7FF',
     '#B28DFF',
     '#97A2FF',
-  ]
+  ];
 
   const changeCardColor = (color) => {
     setBgColor(color);
@@ -44,8 +48,12 @@ function Card({
 
   return (
     <Row key={cardNumber} className='mb-5'>
-      <Col key={cardNumber} >
-        <div key={cardNumber} className='card' style={{ backgroundColor: bgColor }}>
+      <Col key={cardNumber}>
+        <div
+          key={cardNumber}
+          className='card'
+          style={{ backgroundColor: bgColor }}
+        >
           <div className='card-content'>
             {/* Question Components */}
             <div className='question mb-2'>
@@ -69,33 +77,31 @@ function Card({
                 cardNumber={cardNumber}
               />
             </div>
-
-            {/* Answer Components */}
-              {/* Answer Options */}
-              <div>
-              {Object.keys(ansOptions).map((ansOption, i) => (
-                <AnsOption key={i+1}
-                ansNum={i+1}
-                ansChoice={ansOptions[i+1]}
-                ansOptions={ansOptions}
-                setAnsOptions={setAnsOptions}
-                cardNumber={cardNumber}
-                quizInfo={quizInfo}
-                setQuizInfo={setQuizInfo}/>
+            <div>
+              {Object.keys(ansOptions).map((num, i) => (
+                <AnsOption
+                  key={num}
+                  ansChoice={ansOptions[num]}
+                  ansOptions={ansOptions}
+                  ansNum={num}
+                  setAnsOptions={setAnsOptions}
+                  cardNumber={cardNumber}
+                  quizInfo={quizInfo}
+                  setQuizInfo={setQuizInfo}
+                  correctAnswer={correctAnswer}
+                  setCorrectAnswer={setCorrectAnswer}
+                />
               ))}
-              {/* Add Answer Option */}
               {Object.keys(ansOptions).length < 6 ? (
-                <AddAnswer setAnsOptions={setAnsOptions}
-                cardNumber={cardNumber}
-                quizInfo={quizInfo}
-                setQuizInfo={setQuizInfo}
-                ansOptions={ansOptions}
+                <AddAnswer
+                  setAnsOptions={setAnsOptions}
+                  cardNumber={cardNumber}
+                  quizInfo={quizInfo}
+                  setQuizInfo={setQuizInfo}
+                  ansOptions={ansOptions}
                 />
               ) : null}
             </div>
-
-
-
 
             {/* Change card background color */}
             <div className='mt-2 d-flex justify-content-center'>
@@ -113,6 +119,31 @@ function Card({
     </Row>
   );
 }
+
+//    {/* Answer Components */}
+//    <div>
+//    {/* Answer Options */}
+//    {console.log('LIST OF ANS OPTIONS', ansOptions)}
+//    {ansOptions.map((ansOption, i) => (
+//     <AnsOption
+//       key={i}
+//       ansNum={i+1}
+//       ansChoice={ansOption}
+//       ansOptions={ansOptions}
+//       setAnsOptions={setAnsOptions}
+//       quizInfo={quizInfo}
+//       setQuizInfo={setQuizInfo}
+//       cardNumber={cardNumber}
+//     />
+//   ))}
+//   {/* Add Answer Option */}
+//   {ansOptions.length < 6 ? (
+//     <AddAnswer
+//       ansOptions={ansOptions}
+//       setAnsOptions={setAnsOptions}
+//     />
+//   ) : null}
+// </div>
 
 // setQuizInfo( { ...quizInfo, 7: {...quizInfo[7], [variableNmae]: value} } )
 
