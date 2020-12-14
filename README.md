@@ -12,7 +12,9 @@ your friends know you!<br/>
 BFFs is a full-stack single-page web application designed
 to test how well your friends know you. Users enter their
 name and then create a quiz. You can select from pre-made
-questions or make your own custom question/answer choices. You can also change the background color of the card. <br/>
+questions or make your own custom question/answer choices. You can also change the background color of the card. Once you are done customizing your quiz, a link and pin will be generated. 
+(save this info, you'll need it to view the quizzes results!).
+Send your friends the link and test who knows you best. <br/>
 
 ## Techstack
 **Frontend:** React, Javascript, HTML/CSS, Bootstrap <br/>
