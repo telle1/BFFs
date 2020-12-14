@@ -31,9 +31,12 @@ questions or make your own custom question/answer choices. You can also change t
 
 ## Friends View
 ![FriendsView](./client/src/images/for_README/friends_view.png)
+![QuizView](./client/src/images/for_README/quiz_view.png)
+![QuizView](./client/src/images/for_README/friends_result_view.png)
 
 ## View Results
 ![ViewResults](./client/src/images/for_README/view_results.png)
+![Results](./client/src/images/for_README/my_results.png)
 
 ## No Results
 ![NoResults](./client/src/images/for_README/no_results.png)
