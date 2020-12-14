@@ -34,7 +34,7 @@ function AnsOption({
   return (
     <Form>
       <div className='answer-choice d-flex justify-content-center align-items-center'>
-        <input
+        <input 
           type='radio'
           id={ansNum}
           name='answer_options'
@@ -47,8 +47,7 @@ function AnsOption({
               [cardNumber]: { ...quizInfo[cardNumber], correctAnswer: ansNum },
             });
           }}
-          required
-        />
+          required/>
         <label htmlFor='answer-option' className='my-0 mr-2'>
           <textarea
             rows='2'

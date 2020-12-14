@@ -11,6 +11,15 @@
     padding: 10px;
 } */
 
+.card-left{
+    margin: 2% 10%;
+}
+
+.show-cards{
+    height: 100vh;
+    background:  url('../../../images/cards_view.png') no-repeat center center /cover;
+}
+
 .how-well-header{
     font-family: 'Nerko One', cursive;
     color: gray;

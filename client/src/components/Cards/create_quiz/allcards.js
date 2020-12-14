@@ -82,6 +82,7 @@ function AllCards() {
   const location = useLocation();
 
   const [name, setName] = useState('');
+  const [error, setError] = useState('');
   const [quizInfo, setQuizInfo] = useState(premadeCards);
 
   useEffect(() => {
@@ -101,13 +102,16 @@ function AllCards() {
       };
       const body = JSON.stringify({ quizInfo: quizInfo, userName: name });
       const res = await axios.post('/api/invite', body, config);
-      console.log('wHAT IS THE DATA', res.data);
+
       history.push({
         pathname: '/invite',
-        state: { roomCode: res.data.roomCode },
+        state: { roomCode: res.data.roomCode, pin: res.data.pin },
       });
+
     } catch (err) {
-      console.error(err.message);
+      if (err.response) {
+        setError(err.response.data);
+      } 
     }
   };
 
@@ -127,11 +131,14 @@ function AllCards() {
           setQuizInfo={setQuizInfo}
         ></Card>
       ))}
-      <div className='d-flex justify-content-center'>
+ 
+      <div className="text-center">
         <button type='submit' className='btn btn-secondary'>
           Create my quiz!
         </button>
+        <p className="text-danger mt-3">{error}</p>
       </div>
+
     </Form>
   );
 }

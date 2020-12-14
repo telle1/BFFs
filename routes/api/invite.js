@@ -47,11 +47,12 @@ router.post('/', async (req, res) => {
       pin: pin,
     });
     let saveQuiz = await quiz.save();
-    console.log('WHATS IN THE QUIZ', saveQuiz)
+    // console.log('WHATS IN THE QUIZ', saveQuiz)
 
-    res.json({ roomCode: roomCode });
+    res.json({ roomCode: roomCode, pin: pin });
   } catch (err) {
     console.log('ERROR MSG', err.message);
+    res.status(400).send('You must fill out all fields and submit an answer for all questions.')
   }
   //send the room code
 });

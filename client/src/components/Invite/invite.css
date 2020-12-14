@@ -8,23 +8,20 @@
   color: gray;
 }
 
+.invite-text {
+  width: 550px;
+}
+
 .invite-header{
     font-weight: bold;
     font-family: 'Nerko One', cursive;
-    width: 600px;
     line-height: 80px;
     font-size: 100px;
   }
 
-.results {
-  margin-top: 150px;
-}
-
 .result-code{
+  margin-top: 50px;
   font-weight: bold;
   font-size: 60px;
 }
 
-.link {
-  width: 550px;
-}

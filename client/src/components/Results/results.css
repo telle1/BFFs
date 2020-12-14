@@ -73,3 +73,8 @@
 .table-row{
     height: 40px;
 }
+
+.error-404{
+    height: 100vh;
+    background: url('../../images/404.png') no-repeat center center /cover;
+}

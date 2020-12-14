@@ -7,14 +7,24 @@ import './results.css';
 function Results() {
   const [allResults, setAllResults] = useState([]);
   const [friendScore, setFriendScore] = useState();
+  const [quizOwner, setQuizOwner] = useState("")
+  const [error, setError] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
+    try {
     setAllResults(location.state.allResults);
     setFriendScore(location.state.friendScore)
+    setQuizOwner(location.state.quizOwner)
+    } catch(err) {
+      console.log(err)
+      setError(true)
+    }
   }, [location]);
 
   return (
+    <React.Fragment>
+    {error ?  <div className="error-404"></div> :
     <Row className='result-score'>
       <Col xs={5} className='friends-score'>
         <h2 className="friends-header">
@@ -26,7 +36,7 @@ function Results() {
         <p className="small-score">{friendScore} out of 10</p>
       </Col>
       <Col xs={7} className='leaderboard'>
-        <h2 className="lb-header"> {location.state.quizOwner}'s <span className="font-weight-bold">BFFs</span></h2>
+        <h2 className="lb-header"> {quizOwner}'s <span className="font-weight-bold">BFFs</span></h2>
         <Table striped className='leaderboard-table'>
           <tbody>
           
@@ -39,6 +49,8 @@ function Results() {
         </Table>
       </Col>
     </Row>
+}
+    </React.Fragment>
   );
 }
 

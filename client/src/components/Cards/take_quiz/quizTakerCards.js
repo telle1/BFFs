@@ -8,6 +8,8 @@ function QuizTakerCards({ name, match, quizCards, quizOwner }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const [showAns, setShowAns] = useState()
+
   const history = useHistory();
 
   useEffect(() => {
@@ -27,56 +29,61 @@ function QuizTakerCards({ name, match, quizCards, quizOwner }) {
         .then((res) => {
           history.push({
             pathname: `/results/${match.params.quizId}`,
-            state: { allResults: res.data.allResults, friendScore: score, quizOwner: quizOwner },
+            state: {
+              allResults: res.data.allResults,
+              friendScore: score,
+              quizOwner: quizOwner,
+            },
           });
         });
     }
   }, [showResults]); //so that score is not one state behind
 
   return (
-    <React.Fragment>
+    <div className='show-cards'>
       <h1 className='how-well-header mt-3'>
         How well do you know {quizOwner}, {name}?
       </h1>
-      {quizCards.length > 0 ? (
-        <Row key={quizCards.questionNumber} className='mb-5 mt-4'>
-          <Col>
-            <div
-              className='card'
-              style={{ backgroundColor: quizCards[currentQuestion].bgColor }}
-            >
-              <div className='card-content'>
-                <h2 className='font-weight-bold'>
-                  QUESTION {quizCards[currentQuestion].number}
-                </h2>
-                {/* Question */}
-                <h4 className='question mb-2'>
-                  {quizCards[currentQuestion].question}
-                </h4>
+      <Row key={quizCards.questionNumber} className='mb-5 mt-4'>
+        <Col>
+          <div
+            className='card card-left'
+            style={{ backgroundColor: quizCards[currentQuestion].bgColor }}
+          >
+            <div className='card-content'>
+              <h2 className='font-weight-bold'>
+                QUESTION {quizCards[currentQuestion].number}
+              </h2>
+              {/* Question */}
+              <h4 className='question mb-2'>
+                {quizCards[currentQuestion].question}
+              </h4>
 
-                <div>
-                  {/* Answer Options */}
-                  {quizCards[currentQuestion].answerOptions.map(
-                    (ansOption, i) => (
-                      <AnsOption
-                        key={i}
-                        id={i}
-                        ansOption={ansOption}
-                        currentQuestion={currentQuestion}
-                        setCurrentQuestion={setCurrentQuestion}
-                        quizCards={quizCards}
-                        setScore={setScore}
-                        setShowResults={setShowResults}
-                      />
-                    )
-                  )}
-                </div>
+              <div>
+                {/* Answer Options */}
+                {quizCards[currentQuestion].answerOptions.map(
+                  (ansOption, i) => (
+                    <AnsOption
+                      key={i}
+                      id={i}
+                      ansOption={ansOption}
+                      currentQuestion={currentQuestion}
+                      setCurrentQuestion={setCurrentQuestion}
+                      quizCards={quizCards}
+                      setScore={setScore}
+                      setShowResults={setShowResults} setShowAns={setShowAns}
+                    />
+                  )
+                )}
+              </div>
+              <div className="text-danger">
+                <h2>  {showAns}</h2>
               </div>
             </div>
-          </Col>
-        </Row>
-      ) : null}
-    </React.Fragment>
+          </div>
+        </Col>
+      </Row>
+    </div>
   );
 }
 
@@ -87,7 +94,7 @@ function AnsOption({
   setCurrentQuestion,
   quizCards,
   setScore,
-  setShowResults,
+  setShowResults, setShowAns
 }) {
   const [btnColor, setBtnColor] = useState('white');
   const [letterChoice, setLetterChoice] = useState('');
@@ -114,10 +121,12 @@ function AnsOption({
       setBtnColor('#90ee90');
     } else {
       setBtnColor('#ff3232');
+      setShowAns(numToLetter[(quizCards[currentQuestion].correctAnswer)-1].letter)
     }
 
     setTimeout(() => {
       setBtnColor('white');
+      setShowAns('')
       if (nextQuestion < quizCards.length) {
         setCurrentQuestion(currentQuestion + 1);
       } else {
@@ -152,4 +161,3 @@ function AnsOption({
 }
 
 export default QuizTakerCards;
-
