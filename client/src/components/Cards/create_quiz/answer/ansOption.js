@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap';
+import React from 'react';
 import './ansOption.css';
 
 function AnsOption({
   ansNum,
   ansChoice,
-  setAnsOptions,
   ansOptions,
   cardNumber,
   setQuizInfo,
-  quizInfo,
-  correctAnswer,
-  setCorrectAnswer,
+  quizInfo
 }) {
+
   const rmvAnswer = (e) => {
     e.preventDefault();
 
-    console.log('wjats in ansoptions', ansOptions);
-
     let ansOptionTemp = { ...ansOptions };
     delete ansOptionTemp[ansNum];
-    setAnsOptions(ansOptionTemp);
 
     setQuizInfo({
       ...quizInfo,
@@ -32,22 +26,20 @@ function AnsOption({
   };
 
   return (
-    <Form>
       <div className='answer-choice d-flex justify-content-center align-items-center'>
         <input 
           type='radio'
-          id={ansNum}
           name='answer_options'
-          value={ansChoice}
+          value={ansNum}
           className='mr-1'
           onChange={() => {
-            setCorrectAnswer(ansNum);
             setQuizInfo({
               ...quizInfo,
               [cardNumber]: { ...quizInfo[cardNumber], correctAnswer: ansNum },
             });
           }}
           required/>
+
         <label htmlFor='answer-option' className='my-0 mr-2'>
           <textarea
             rows='2'
@@ -55,9 +47,6 @@ function AnsOption({
             value={ansChoice}
             onChange={(e) => {
               e.preventDefault();
-
-              setAnsOptions({ ...ansOptions, [ansNum]: e.target.value });
-
               setQuizInfo({
                 ...quizInfo,
                 [cardNumber]: {
@@ -73,7 +62,6 @@ function AnsOption({
           <i className='fas fa-times' style={{ color: 'white' }}></i>
         </button>
       </div>
-    </Form>
   );
 }
 

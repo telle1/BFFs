@@ -1,5 +1,4 @@
 function AddAnswer({
-  setAnsOptions,
   cardNumber,
   quizInfo,
   setQuizInfo,
@@ -7,15 +6,13 @@ function AddAnswer({
 }) {
   let ansOptionlength = Object.keys(ansOptions).length;
   let lastAnsOptionNum = Object.keys(ansOptions)[Object.keys(ansOptions).length-1]
-  console.log('last ans option num', lastAnsOptionNum)
+  // console.log('last ans option num', lastAnsOptionNum)
   // let nextOptionNum = Number(ansOptionlength) + 1;
   let nextOptionNum = Number(lastAnsOptionNum) + 1
   
-  console.log('ansoptionlength', ansOptionlength, 'nextoptionum', nextOptionNum)
+  // console.log('ansoptionlength', ansOptionlength, 'nextoptionum', nextOptionNum)
   const addAnswerOption = (e) => {
     e.preventDefault();
-
-    setAnsOptions({ ...ansOptions, [nextOptionNum]: '' });
 
     setQuizInfo({
       ...quizInfo,

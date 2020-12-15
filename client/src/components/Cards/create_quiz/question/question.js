@@ -1,6 +1,6 @@
 import './question.css'
 
-function Question({ question, cardNumber, setQuestion, customQ, setQuizInfo, quizInfo}) {
+function Question({ cardNumber, question, customQ, setQuizInfo, quizInfo}) {
     return (
       <div>
         {customQ ? (
@@ -10,11 +10,10 @@ function Question({ question, cardNumber, setQuestion, customQ, setQuizInfo, qui
             placeholder='Custom question here'
             value={question}
             onChange={(e) => {
-              setQuestion(e.target.value)
               setQuizInfo({
                 ...quizInfo,
                 [cardNumber]: {...quizInfo[cardNumber], question: e.target.value}
-              })
+              });
             }}
           ></textarea>
         ) : (

@@ -3,12 +3,10 @@ import './questionDropdown.css';
 
 function QuestionDropdown({
   quizInfo,
-  setQuestion,
-  setAnsOptions,
   setCustomQ,
-  setQuizInfo, cardNumber
+  setQuizInfo,
+  cardNumber,
 }) {
-
   let allQ = {};
   for (let i = 1; i <= 10; i++) {
     allQ[quizInfo[i].question] = quizInfo[i].ansOptions;
@@ -24,16 +22,18 @@ function QuestionDropdown({
         More Questions
       </Dropdown.Toggle>
       <Dropdown.Menu className='question-dropdown-menu'>
-
         {Object.keys(allQ).map((key) => (
-          <Dropdown.Item key={key}
+          <Dropdown.Item
+            key={key}
             onClick={() => {
-              setQuestion(key);
-              setAnsOptions(allQ[key]);
               setQuizInfo({
                 ...quizInfo,
-                [cardNumber]: {...quizInfo[cardNumber], question: key, ansOptions: allQ[key]}
-              })
+                [cardNumber]: {
+                  ...quizInfo[cardNumber],
+                  question: key,
+                  ansOptions: allQ[key],
+                },
+              });
             }}
           >
             {key}
@@ -42,15 +42,16 @@ function QuestionDropdown({
 
         <Dropdown.Item
           onClick={(e) => {
-            setQuestion('');
             setCustomQ(true);
-            setAnsOptions(['', '', '', '']);
 
             setQuizInfo({
               ...quizInfo,
-              [cardNumber]: {...quizInfo[cardNumber], question: '', ansOptions: ['', '', '', '']}
-            })
-            
+              [cardNumber]: {
+                ...quizInfo[cardNumber],
+                question: '',
+                ansOptions: ['', '', '', ''],
+              },
+            });
           }}
         >
           Add custom question

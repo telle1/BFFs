@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Card from './card.js';
 import axios from 'axios';
+import {v4 as uuid} from 'uuid'
+
 
 const premadeCards = {
   1: {
+    id: uuid(),
     number: 1,
     bgColor: '#FF9AA2',
     question: 'Why do I...?',
@@ -13,20 +16,23 @@ const premadeCards = {
     ansOptions: { 1: 'a', 2: 'b', 3: 'c', 4: 'd' },
   },
   2: {
+    id: uuid(),
     number: 2,
     bgColor: '#FFB7B2',
-    question: 'Where was my best vacation?',
+    question: 'q2?',
     correctAnswer: '',
     ansOptions: { 1: 'e', 2: 'f', 3: 'g', 4: 'h' },
   },
   3: {
+    id: uuid(),
     number: 3,
     bgColor: '#FFB347',
-    question: 'What was the name of my favorite stuffed animal?',
+    question: 'q3?',
     correctAnswer: '',
     ansOptions: { 1: 'i', 2: 'j', 3: 'k', 4: 'l' },
   },
   4: {
+    id: uuid(),
     number: 4,
     bgColor: '#FFDAC1',
     question: 'Where was my childhood home?',
@@ -34,13 +40,15 @@ const premadeCards = {
     ansOptions: { 1: 'a', 2: 'b', 3: 'c', 4: 'd' },
   },
   5: {
+    id: uuid(),
     number: 5,
     bgColor: '#B5EAD7',
-    question: 'What is my favorite color',
+    question: 'What is my favorite color?',
     correctAnswer: '',
     ansOptions: { 1: 'e', 2: 'f', 3: 'g', 4: 'h' },
   },
   6: {
+    id: uuid(),
     number: 6,
     bgColor: '#E2F0CB',
     question: 'What sport do I like watching the best?',
@@ -48,13 +56,15 @@ const premadeCards = {
     ansOptions: { 1: 'i', 2: 'j', 3: 'k', 4: 'l' },
   },
   7: {
+    id: uuid(),
     number: 7,
     bgColor: '#85E3FF',
-    question: 'What is my middle name?',
+    question: 'What Myer Briggs personality am I?',
     correctAnswer: '',
     ansOptions: { 1: 'a', 2: 'b', 3: 'c', 4: 'd' },
   },
   8: {
+    id: uuid(),
     number: 8,
     bgColor: '#ACE7FF',
     question: 'What is my favorite drink?',
@@ -62,6 +72,7 @@ const premadeCards = {
     ansOptions: { 1: 'e', 2: 'f', 3: 'g', 4: 'h' },
   },
   9: {
+    id: uuid(),
     number: 9,
     bgColor: '#B28DFF',
     question: 'What was my craziest night?',
@@ -69,6 +80,7 @@ const premadeCards = {
     ansOptions: { 1: 'i', 2: 'j', 3: 'k', 4: 'l' },
   },
   10: {
+    id: uuid(),
     number: 10,
     bgColor: '#97A2FF',
     question: 'What is my favorite subject?',
@@ -78,6 +90,7 @@ const premadeCards = {
 };
 
 function AllCards() {
+
   const history = useHistory();
   const location = useLocation();
 
@@ -88,8 +101,6 @@ function AllCards() {
   useEffect(() => {
     setName(location.state.name);
   }, [location]);
-
-  console.log('HERES ALL THE QUIZ INFO', quizInfo);
 
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
@@ -115,21 +126,23 @@ function AllCards() {
     }
   };
 
+  console.log('HERES ALL THE QUIZ INFO', quizInfo);
+
   return (
     <Form onSubmit={handleQuestionSubmit} className='mt-5 mb-5'>
       <h1 className='d-flex justify-content-center mb-3 quiz-header'>
-        Ask away, {name}!{' '}
+        Ask away, {name}!
       </h1>
-      {Object.keys(quizInfo).map((cardNum, i) => (
+      {Object.keys(quizInfo).map((cardNum) => (
         <Card
-          key={cardNum}
-          cardNumber={cardNum}
-          cardColor={premadeCards[cardNum].bgColor}
-          defaultQ={premadeCards[cardNum].question}
-          defaultA={premadeCards[cardNum].ansOptions}
-          quizInfo={quizInfo}
-          setQuizInfo={setQuizInfo}
-        ></Card>
+        key={quizInfo[cardNum].number}
+        cardNumber={cardNum}
+        bgColor={quizInfo[cardNum].bgColor}
+        question={quizInfo[cardNum].question}
+        ansOptions={quizInfo[cardNum].ansOptions}
+        quizInfo={quizInfo}
+        setQuizInfo={setQuizInfo}
+      ></Card>
       ))}
  
       <div className="text-center">
@@ -144,6 +157,16 @@ function AllCards() {
 }
 
 export default AllCards;
+
+        // <Card
+        //   key={premadeCards[cardNum].id}
+        //   cardNumber={cardNum}
+        //   cardColor={premadeCards[cardNum].bgColor}
+        //   defaultQ={premadeCards[cardNum].question}
+        //   defaultA={premadeCards[cardNum].ansOptions}
+        //   quizInfo={quizInfo}
+        //   setQuizInfo={setQuizInfo}
+        // ></Card>
 
 {
   /* {premadeCards.map((card, i) => (

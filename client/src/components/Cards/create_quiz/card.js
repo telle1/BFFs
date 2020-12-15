@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import './card.css';
 import AnsOption from './answer/ansOption';
@@ -9,18 +9,13 @@ import QuestionDropdown from './question/questionDropdown';
 function Card({
   quizInfo,
   setQuizInfo,
-  defaultQ,
-  defaultA,
-  cardColor,
+  question,
+  ansOptions,
+  bgColor,
   cardNumber
 }) {
 
-
-  const [question, setQuestion] = useState(defaultQ);
   const [customQ, setCustomQ] = useState(false);
-  const [ansOptions, setAnsOptions] = useState(defaultA);
-  const [bgColor, setBgColor] = useState(cardColor);
-  const [correctAnswer, setCorrectAnswer] = useState('');
 
   const colors = [
     '#FF9AA2',
@@ -36,7 +31,6 @@ function Card({
   ];
 
   const changeCardColor = (color) => {
-    setBgColor(color);
     setQuizInfo({
       ...quizInfo,
       [cardNumber]: { ...quizInfo[cardNumber], bgColor: color },
@@ -44,10 +38,9 @@ function Card({
   };
 
   return (
-    <Row key={cardNumber} className='mb-5'>
-      <Col key={cardNumber}>
+    <Row className='mb-5'>
+      <Col>
         <div
-          key={cardNumber}
           className='card'
           style={{ backgroundColor: bgColor }}
         >
@@ -56,44 +49,35 @@ function Card({
             <div className='question mb-2'>
               <h2>QUESTION {cardNumber}</h2>
               {/* Question input field */}
-              <Question
+              <Question   
                 quizInfo={quizInfo}
-                question={question}
                 setQuizInfo={setQuizInfo}
-                setQuestion={setQuestion}
                 customQ={customQ}
-                setAnsOptions={setAnsOptions}
+                question={question}
                 cardNumber={cardNumber}
               />
               {/* Additional Question Options/Dropdown */}
-              <QuestionDropdown
+              <QuestionDropdown 
                 quizInfo={quizInfo}
-                setQuestion={setQuestion}
-                setAnsOptions={setAnsOptions}
                 setCustomQ={setCustomQ}
                 setQuizInfo={setQuizInfo}
                 cardNumber={cardNumber}
               />
             </div>
             <div>
-              {Object.keys(ansOptions).map((num, i) => (
+              {Object.keys(ansOptions).map((num) => (
                 <AnsOption
                   key={num}
                   ansChoice={ansOptions[num]}
                   ansOptions={ansOptions}
                   ansNum={num} 
-                  // ansNum={i+1}
-                  setAnsOptions={setAnsOptions}
                   cardNumber={cardNumber}
                   quizInfo={quizInfo}
                   setQuizInfo={setQuizInfo}
-                  correctAnswer={correctAnswer}
-                  setCorrectAnswer={setCorrectAnswer}
                 />
               ))}
               {Object.keys(ansOptions).length < 6 ? (
-                <AddAnswer
-                  setAnsOptions={setAnsOptions}
+                <AddAnswer 
                   cardNumber={cardNumber}
                   quizInfo={quizInfo}
                   setQuizInfo={setQuizInfo}
@@ -105,7 +89,7 @@ function Card({
             {/* Change card background color */}
             <div className='mt-2 d-flex justify-content-center'>
               {colors.map((color) => (
-                <div
+                <div key={color}
                   className='btn pick-a-color mr-1'
                   style={{ backgroundColor: color }}
                   onClick={() => changeCardColor(color)}
@@ -118,6 +102,10 @@ function Card({
     </Row>
   );
 }
+
+    // const [question, setQuestion] = useState(defaultQ);
+  // const [ansOptions, setAnsOptions] = useState(defaultA);
+  // const [correctAnswer, setCorrectAnswer] = useState('');
 
 //    {/* Answer Components */}
 //    <div>
