@@ -140,6 +140,7 @@ function AllCards() {
         bgColor={quizInfo[cardNum].bgColor}
         question={quizInfo[cardNum].question}
         ansOptions={quizInfo[cardNum].ansOptions}
+        correctAnswer={quizInfo[cardNum].correctAnswer}
         quizInfo={quizInfo}
         setQuizInfo={setQuizInfo}
       ></Card>

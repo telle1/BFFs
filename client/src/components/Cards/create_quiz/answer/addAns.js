@@ -4,13 +4,14 @@ function AddAnswer({
   setQuizInfo,
   ansOptions,
 }) {
-  let ansOptionlength = Object.keys(ansOptions).length;
+
   let lastAnsOptionNum = Object.keys(ansOptions)[Object.keys(ansOptions).length-1]
-  // console.log('last ans option num', lastAnsOptionNum)
-  // let nextOptionNum = Number(ansOptionlength) + 1;
+  if (!lastAnsOptionNum){
+    lastAnsOptionNum = 0;
+  }
+  
   let nextOptionNum = Number(lastAnsOptionNum) + 1
   
-  // console.log('ansoptionlength', ansOptionlength, 'nextoptionum', nextOptionNum)
   const addAnswerOption = (e) => {
     e.preventDefault();
 

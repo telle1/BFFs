@@ -8,7 +8,7 @@ function QuizTakerCards({ name, match, quizCards, quizOwner }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
-  const [showAns, setShowAns] = useState()
+  const [showAns, setShowAns] = useState();
 
   const history = useHistory();
 
@@ -58,26 +58,26 @@ function QuizTakerCards({ name, match, quizCards, quizOwner }) {
               <h4 className='question mb-2'>
                 {quizCards[currentQuestion].question}
               </h4>
-
               <div>
                 {/* Answer Options */}
                 {quizCards[currentQuestion].answerOptions.map(
-                  (ansOption, i) => (
+                  (ansOption, idx) => (
                     <AnsOption
-                      key={i}
-                      id={i}
+                      key={idx}
+                      idx={idx}
                       ansOption={ansOption}
                       currentQuestion={currentQuestion}
                       setCurrentQuestion={setCurrentQuestion}
                       quizCards={quizCards}
                       setScore={setScore}
-                      setShowResults={setShowResults} setShowAns={setShowAns}
+                      setShowResults={setShowResults}
+                      setShowAns={setShowAns}
                     />
                   )
                 )}
               </div>
-              <div className="text-danger">
-                <h2>  {showAns}</h2>
+              <div className='text-danger'>
+                <h2> {showAns}</h2>
               </div>
             </div>
           </div>
@@ -89,12 +89,13 @@ function QuizTakerCards({ name, match, quizCards, quizOwner }) {
 
 function AnsOption({
   ansOption,
-  id,
+  idx,
   currentQuestion,
   setCurrentQuestion,
   quizCards,
   setScore,
-  setShowResults, setShowAns
+  setShowResults,
+  setShowAns,
 }) {
   const [btnColor, setBtnColor] = useState('white');
   const [letterChoice, setLetterChoice] = useState('');
@@ -110,25 +111,25 @@ function AnsOption({
   };
 
   useEffect(() => {
-    setLetterChoice(numToLetter[String(id)].letter);
-    setLetterBgCol(numToLetter[String(id)].bgColor);
+    setLetterChoice(numToLetter[String(idx)].letter);
+    setLetterBgCol(numToLetter[String(idx)].bgColor);
   }, []);
 
   const changeQuestion = () => {
     const nextQuestion = currentQuestion + 1;
-    if (id + 1 == quizCards[currentQuestion].correctAnswer) {
+    if (idx == quizCards[currentQuestion].correctAnswer) {
       setScore((score) => score + 1);
       setBtnColor('#90ee90');
     } else {
       setBtnColor('#ff3232');
-      setShowAns(numToLetter[(quizCards[currentQuestion].correctAnswer)-1].letter)
+      setShowAns(numToLetter[quizCards[currentQuestion].correctAnswer].letter);
     }
 
     setTimeout(() => {
       setBtnColor('white');
-      setShowAns('')
+      setShowAns('');
       if (nextQuestion < quizCards.length) {
-        setCurrentQuestion(currentQuestion + 1);
+        setCurrentQuestion(nextQuestion);
       } else {
         setShowResults(true);
       }
