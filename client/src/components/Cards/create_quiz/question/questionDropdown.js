@@ -1,12 +1,15 @@
 import { Dropdown } from 'react-bootstrap';
 import './questionDropdown.css';
+import { UseQuiz, SetQuiz } from '../QuizContext'
 
 function QuestionDropdown({
-  quizInfo,
   setCustomQ,
-  setQuizInfo,
   cardNumber,
-}) {
+}) 
+{
+
+  const [quizInfo, changeCardProp] = [UseQuiz(), SetQuiz()];
+
   let allQ = {};
   for (let i = 1; i <= 10; i++) {
     allQ[quizInfo[i].question] = quizInfo[i].ansOptions;
@@ -25,15 +28,8 @@ function QuestionDropdown({
         {Object.keys(allQ).map((key) => (
           <Dropdown.Item
             key={key}
-            onClick={() => {
-              setQuizInfo({
-                ...quizInfo,
-                [cardNumber]: {
-                  ...quizInfo[cardNumber],
-                  question: key,
-                  ansOptions: allQ[key],
-                },
-              });
+            onClick={()=> {
+              changeCardProp(cardNumber, 'question', key, 'ansOptions', allQ[key])
             }}
           >
             {key}
@@ -41,17 +37,9 @@ function QuestionDropdown({
         ))}
 
         <Dropdown.Item
-          onClick={(e) => {
+          onClick={(e)=> {
             setCustomQ(true);
-
-            setQuizInfo({
-              ...quizInfo,
-              [cardNumber]: {
-                ...quizInfo[cardNumber],
-                question: '',
-                ansOptions: ['', '', '', ''],
-              },
-            });
+            changeCardProp(cardNumber, 'question', '', 'ansOptions', ['', '', '', ''])
           }}
         >
           Add custom question

@@ -9,17 +9,21 @@ import QuizTakerName from './components/Cards/take_quiz/quizTakerName.js'
 import Results from './components/Results/results.js'
 import MyResults from './components/Results/myresults.js'
 import MyNavbar from './components/Navbar/navbar.js'
+import QuizProvider from './components/Cards/create_quiz/QuizContext.js'
 
 
 function App() {
 
   return (
   <Router>
+    
     <MyNavbar></MyNavbar>
     <Switch>
     <Route exact path="/" component={Hero}></Route>
     <Route path="/invite" component={Invite}></Route>
-    <Route path="/create-quiz" component={AllCards}></Route>
+    <QuizProvider>
+      <Route path="/create-quiz" component={AllCards}></Route>
+    </QuizProvider>
     <Route path="/take-quiz/:quizId" component={QuizTakerName}></Route>
     <Route path="/results/:quizId" component={Results}></Route>
     <Route path="/view-results" component={MyResults}></Route>

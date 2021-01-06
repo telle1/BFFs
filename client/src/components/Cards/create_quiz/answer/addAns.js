@@ -1,26 +1,25 @@
-function AddAnswer({
-  cardNumber,
-  quizInfo,
-  setQuizInfo,
-  ansOptions,
-}) {
+import { UseQuiz, SetQuiz } from '../QuizContext';
 
-  let lastAnsOptionNum = Object.keys(ansOptions)[Object.keys(ansOptions).length-1]
-  if (!lastAnsOptionNum){
+function AddAnswer({ cardNumber }) {
+  
+  const [quizInfo, changeCardProp] = [UseQuiz(), SetQuiz()];
+  const ansOptions = quizInfo[cardNumber].ansOptions;
+
+  let lastAnsOptionNum = Object.keys(ansOptions)[
+    Object.keys(ansOptions).length - 1
+  ];
+  if (!lastAnsOptionNum) {
     lastAnsOptionNum = 0;
   }
-  
-  let nextOptionNum = Number(lastAnsOptionNum) + 1
-  
+
+  let nextOptionNum = Number(lastAnsOptionNum) + 1;
+
   const addAnswerOption = (e) => {
     e.preventDefault();
 
-    setQuizInfo({
-      ...quizInfo,
-      [cardNumber]: {
-        ...quizInfo[cardNumber],
-        ansOptions: { ...ansOptions, [nextOptionNum]: '' },
-      },
+    changeCardProp(cardNumber, 'ansOptions', {
+      ...ansOptions,
+      [nextOptionNum]: '',
     });
   };
 

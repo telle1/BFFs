@@ -1,6 +1,12 @@
 import './question.css'
+import React from 'react'
+import { UseQuiz, SetQuiz } from '../QuizContext'
 
-function Question({ cardNumber, question, customQ, setQuizInfo, quizInfo}) {
+function Question({ customQ, cardNumber }) {
+
+  const [quizInfo, changeCardProp] = [UseQuiz(), SetQuiz()];
+  const question = quizInfo[cardNumber].question
+
     return (
       <div>
         {customQ ? (
@@ -9,12 +15,7 @@ function Question({ cardNumber, question, customQ, setQuizInfo, quizInfo}) {
             className='question-text-area'
             placeholder='Custom question here'
             value={question}
-            onChange={(e) => {
-              setQuizInfo({
-                ...quizInfo,
-                [cardNumber]: {...quizInfo[cardNumber], question: e.target.value}
-              });
-            }}
+            onChange={(e) => changeCardProp(cardNumber, 'question', e.target.value)}
           ></textarea>
         ) : (
           <textarea
