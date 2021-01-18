@@ -10,8 +10,15 @@ function Invite(){
  
   useEffect(() => {
     try {
-    setRoomCode(location.state.roomCode)
-    setPin(location.state.pin)
+      let savedRC = localStorage.getItem('roomCode')
+      let savedPin = localStorage.getItem('pin')
+      if (savedRC){
+        setRoomCode(JSON.parse(savedRC))
+        setPin(JSON.parse(savedPin))
+      } else {
+        setRoomCode(location.state.roomCode)
+        setPin(location.state.pin)
+      }
     } catch(err){
       setError(true)
     }

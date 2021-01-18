@@ -31,10 +31,16 @@ function AllCards() {
       const body = JSON.stringify({ quizInfo: quizInfo, userName: name });
       const res = await axios.post('/api/invite', body, config);
 
+      localStorage.setItem('roomCode', JSON.stringify(res.data.roomCode))
+      localStorage.setItem('pin', JSON.stringify(res.data.pin))
+
       history.push({
         pathname: '/invite',
         state: { roomCode: res.data.roomCode, pin: res.data.pin },
       });
+
+
+
     } catch (err) {
       if (err.response) {
         setError(err.response.data);
