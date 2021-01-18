@@ -1,6 +1,9 @@
 # BFFs
 BFFs is the ultimate friendship quiz. Test how well
 your friends know you!<br/>
+
+## Live: https://friendship-quiz.herokuapp.com/
+
 **My LinkedIn:** https://www.linkedin.com/in/tiffany-luu0/ <br/>
 
 ## Table of Contents
