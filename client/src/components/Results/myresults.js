@@ -12,7 +12,7 @@ function MyResults() {
   const [showError, setShowError] = useState(false);
   const [quizOwner, setQuizOwner] = useState('');
 
-  console.log('whats in all reuslts', allResults);
+  // console.log('whats in all reuslts', allResults);
 
   const handleResults = (e) => {
     e.preventDefault();

@@ -21,7 +21,7 @@ function AllCards() {
 
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
-    console.log('QUIZ INFOOOOOO', quizInfo);
+    // console.log('QUIZ INFOOOOOO', quizInfo);
     try {
       const config = {
         headers: {
@@ -47,8 +47,6 @@ function AllCards() {
       }
     }
   };
-
-  console.log('HERES ALL THE QUIZ INFO', quizInfo);
 
   return (
     <Form onSubmit={handleQuestionSubmit} className='mt-5 mb-5'>
